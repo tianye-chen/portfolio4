@@ -36,6 +36,12 @@ function App() {
 
   const experience = [
     {
+      title: 'Intern',
+      company: 'S&P Global',
+      duration: 'Summer 2024',
+      description: 'Assisted in LLM training and handling big data'
+    },
+    {
       title: 'Fellow',
       company: 'CUNY Tech Prep',
       duration: '2022 - 2023',
