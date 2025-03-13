@@ -134,7 +134,7 @@ function App() {
       </section>
 
       <section class="pt-20 -translate-y-70">
-        <div class="mx-auto max-w-5/6 md:max-w-7xl border-1 border-gray-300 rounded-4xl shadow-gray-300 shadow-lg bg-white">
+        <div class="mx-auto max-w-5/6 2xl:max-w-7xl border-1 border-gray-300 rounded-4xl shadow-gray-300 shadow-lg bg-white">
           <div class='md:grid-cols-3 grid rounded-4xl'>
             <InfoBoxLarge 
               icon={<FaLaptopCode/>}
