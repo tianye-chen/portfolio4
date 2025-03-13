@@ -3,7 +3,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./App.css";
 import { LuGraduationCap, LuMousePointer2, LuBriefcase } from "react-icons/lu";
-import { IoCodeSlash, IoMailOutline, IoExtensionPuzzleOutline } from "react-icons/io5";
+import {
+  IoCodeSlash,
+  IoMailOutline,
+  IoExtensionPuzzleOutline,
+} from "react-icons/io5";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { PiHandWavingFill } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
@@ -50,7 +54,7 @@ function App() {
     "Gym",
     "Exploring New Technologies",
     "Visiting New Places",
-  ]
+  ];
 
   const education = [
     {
@@ -84,10 +88,8 @@ function App() {
 
   return (
     <div class="min-h-screen" onMouseMove={handleMouseMove}>
-      <div
-        class="absolute min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"
-      ></div>
-      
+      <div class="absolute min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
+
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden text-center md:text-left">
         <div class="">
           <h1 class="flex items-center text-3xl font-extrabold text-emerald-500 font-stretch-150%">
@@ -127,39 +129,46 @@ function App() {
             {" "}
             <FaRegUser class="mr-2" /> About Me
           </h2>
-          <p class="mb-8 text-lg font-light text-center">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, veniam minus eveniet ipsa excepturi, sit suscipit rerum quis commodi repellendus sapiente iusto incidunt corrupti voluptatum nobis officia magnam accusantium molestias?
+          <p class="mb-8 text-center text-lg font-light">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur,
+            veniam minus eveniet ipsa excepturi, sit suscipit rerum quis commodi
+            repellendus sapiente iusto incidunt corrupti voluptatum nobis
+            officia magnam accusantium molestias?
           </p>
         </div>
       </section>
 
-      <section class="pt-20 -translate-y-70">
-        <div class="mx-auto max-w-5/6 2xl:max-w-7xl border-1 border-gray-300 rounded-4xl shadow-gray-300 shadow-lg bg-white">
-          <div class='md:grid-cols-3 grid rounded-4xl'>
-            <InfoBoxLarge 
-              icon={<FaLaptopCode/>}
-              title='What I can do'
-              description={"Skills and areas of expertise I have acquired through my education and experience."}
+      <section class="-translate-y-70 pt-20">
+        <div class="mx-auto max-w-5/6 rounded-4xl border-1 border-gray-300 bg-white shadow-lg shadow-gray-300 2xl:max-w-7xl">
+          <div class="grid rounded-4xl md:grid-cols-3">
+            <InfoBoxLarge
+              icon={<FaLaptopCode />}
+              title="What I can do"
+              description={
+                "Skills and areas of expertise I have acquired through my education and experience."
+              }
               content={broad_skills}
-              corner={'left'}
+              corner={"left"}
             />
-            <InfoBoxLarge 
-              icon={<IoCodeSlash/>}
-              title='What I know'
-              description={"Programming languages and tools I am proficient in."}
+            <InfoBoxLarge
+              icon={<IoCodeSlash />}
+              title="What I know"
+              description={
+                "Programming languages and tools I am proficient in."
+              }
               content={prog_skills}
             />
-            <InfoBoxLarge 
-              icon={<IoExtensionPuzzleOutline/>}
-              title='What my hobbies are'
+            <InfoBoxLarge
+              icon={<IoExtensionPuzzleOutline />}
+              title="What my hobbies are"
               description={"Interests and activities I enjoy outside of work."}
               content={hobbies}
-              corner={'right'}
+              corner={"right"}
             />
           </div>
         </div>
       </section>
-      
+
       <section class="bg-teal-50 py-20">
         <div class="mx-auto max-w-4xl px-4">
           <h2 class="mb-8 flex items-center text-3xl font-bold">
@@ -191,7 +200,7 @@ function App() {
             {" "}
             <LuBriefcase class="mr-2" /> Experience{" "}
           </h2>
-          <div class="grid-cols-1 grid gap-12">
+          <div class="grid grid-cols-1 gap-12">
             {experience.map((exp, index) => (
               <div class="border-l-2 border-emerald-200 pl-8">
                 <p class="text-lg font-semibold">

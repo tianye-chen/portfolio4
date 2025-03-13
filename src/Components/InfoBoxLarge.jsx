@@ -1,23 +1,22 @@
 import React from "react";
 
-export const InfoBoxLarge = ({icon, title, description, content, corner}) => {
-    return (
-        <div class={`border-1 border-gray-200 px-4 py-16 hover:scale-110 transition-all ease-in-out bg-white hover:rounded-4xl hover:shadow-lg
-        ${corner === 'left' ? 'rounded-t-4xl md:rounded-t-none md:rounded-l-4xl' : ''} ${corner === 'right' ? 'rounded-b-4xl md:rounded-b-none md:rounded-r-4xl' : ''}`}>
-            <div class='flex items-center justify-center flex-col text-center'>
-                <div class='text-4xl mb-8'>
-                    {icon}
-                </div>
-                <div class='mb-8'>
-                    <h2 class='text-2xl font-bold mb-4'>{title}</h2>
-                    <p class='text-gray-500 text-center'>{description}</p>
-                </div>
-                {content.map((item, index) => (
-                    <div>
-                        <p class='text-lg font-semibold py-2'>{item}</p>
-                    </div>
-                ))}
-            </div>
+export const InfoBoxLarge = ({ icon, title, description, content, corner }) => {
+  return (
+    <div
+      class={`border-1 border-gray-200 bg-white px-4 py-16 transition-all ease-in-out hover:scale-110 hover:rounded-4xl hover:shadow-lg ${corner === "left" ? "rounded-t-4xl md:rounded-t-none md:rounded-l-4xl" : ""} ${corner === "right" ? "rounded-b-4xl md:rounded-r-4xl md:rounded-b-none" : ""}`}
+    >
+      <div class="flex flex-col items-center justify-center text-center">
+        <div class="mb-8 text-4xl">{icon}</div>
+        <div class="mb-8">
+          <h2 class="mb-4 text-2xl font-bold">{title}</h2>
+          <p class="text-center text-gray-500">{description}</p>
         </div>
-    );   
-}
+        {content.map((item, index) => (
+          <div>
+            <p class="py-2 text-lg font-semibold">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
