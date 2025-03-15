@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./App.css";
 import { LuGraduationCap, LuMousePointer2, LuBriefcase } from "react-icons/lu";
@@ -11,29 +12,32 @@ import {
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { PiHandWavingFill } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
-import { FaLaptopCode, FaRegUser } from "react-icons/fa";
+import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(useGSAP);
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
+  const icons = useRef([]);
+  const starIcon = useRef([]);
+  const downArrow = useRef();
 
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const x = (clientX / window.innerWidth) * 100;
-    const y = (clientY / window.innerHeight) * 100;
-
-    setGradPos({ x, y });
-  };
+  const links = [
+    "https://github.com/tianye-chen",
+    "https://www.linkedin.com/in/tianyechen/",
+    "mailto:tianyechen1@gmail.com"
+  ]
 
   const broad_skills = [
     "Machine Learning",
     "Deep Learning",
+    "Reinforcement Learning",
     "Data Science",
-    "Web Dev",
+    "Web Development",
     "Software Engineering",
-    "Game Design & Dev",
+    "Game Design & Development",
   ];
 
   const prog_skills = [
@@ -52,7 +56,8 @@ function App() {
     "Model Building",
     "Cooking",
     "Gym",
-    "Exploring New Technologies",
+    "Gardening",
+    "Hardware Tinkering",
     "Visiting New Places",
   ];
 
@@ -72,12 +77,6 @@ function App() {
 
   const experience = [
     {
-      title: "Intern",
-      company: "S&P Global",
-      duration: "Summer 2024",
-      description: "Assisted in LLM training and handling big data",
-    },
-    {
       title: "Fellow",
       company: "CUNY Tech Prep",
       duration: "2022 - 2023",
@@ -85,10 +84,63 @@ function App() {
         "Full-stack web development and professional development program",
     },
   ];
+  
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const x = (clientX / window.innerWidth) * 100;
+    const y = (clientY / window.innerHeight) * 100;
+
+    setGradPos({ x, y });
+  };
+
+  useGSAP(() => {
+    icons.current.forEach((icon) => {
+      gsap.set(icon, { opacity: 1, rotate: 0, scale: 1})
+    })
+
+    gsap.to(downArrow.current, {
+      y: 10,
+      repeat: -1,
+      yoyo: true,
+      duration: 1,
+      ease: "power1.inOut",
+    })
+
+    return () => {
+      icons.current.forEach((icon) => {
+        gsap.killTweensOf(icon)
+      })
+
+      gsap.killTweensOf(downArrow.current)
+    }
+  }, []);
+
+  const rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const handleIconMouseEnter = (index) => {
+    gsap.to(icons.current[index], {
+      rotate: rand(-20, 20),
+      duration: 0.3,
+      scale: 1.2,
+      ease: "power2.out",
+    });
+  };
+
+  const handleIconMouseLeave = (index) => {
+    gsap.to(icons.current[index], {
+      opacity: 1,
+      rotate: 0,
+      duration: 0.3,
+      scale: 1,
+      ease: "power2.in",
+    });
+  };
 
   return (
     <div class="min-h-screen" onMouseMove={handleMouseMove}>
-      <div class="absolute min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
+      <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden text-center md:text-left">
         <div class="">
@@ -100,8 +152,6 @@ function App() {
             class="mb-4 bg-clip-text text-6xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out"
             style={{
               backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
             }}
           >
             Tianye Chen
@@ -114,13 +164,24 @@ function App() {
             Specializing in machine learning and deep learning
           </p>
         </div>
-        <div class="absolute bottom-1/4 flex min-w-screen flex-row items-center justify-center gap-4 px-6 text-3xl text-emerald-500">
-          <FiGithub />
-          <FiLinkedin />
-          <IoMailOutline />
+        <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
+          <h1 class='text-2xl font-semibold'>Let's Talk</h1>
+          <div class="flex gap-6 text-3xl">
+            {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
+                <a key={index} href={links[index]} target="_blank" rel="noopener noreferrer">
+                  <Icon
+                    key={index}
+                    ref={(uniqueRef) => (icons.current[index] = uniqueRef)}
+                    onMouseEnter={() => handleIconMouseEnter(index)}
+                    onMouseLeave={() => handleIconMouseLeave(index)}
+                    class="cursor-pointer"
+                  />
+                </a>
+              ))}
+            </div>
         </div>
 
-        <IoIosArrowDown class="absolute bottom-10 flex justify-center text-4xl text-emerald-500" />
+        <IoIosArrowDown class="absolute bottom-10 flex justify-center text-4xl text-emerald-500" ref={downArrow}/>
       </div>
 
       <section class="bg-teal-50 pt-40 pb-80">
@@ -145,7 +206,7 @@ function App() {
               icon={<FaLaptopCode />}
               title="What I can do"
               description={
-                "Skills and areas of expertise I have acquired through my education and experience."
+                "Areas of expertise that I have worked on."
               }
               content={broad_skills}
               corner={"left"}
