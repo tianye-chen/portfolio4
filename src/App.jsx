@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
 import "./App.css";
 import { LuGraduationCap, LuMousePointer2, LuBriefcase } from "react-icons/lu";
 import {
@@ -17,12 +18,14 @@ import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(TextPlugin);
   gsap.registerPlugin(useGSAP);
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const icons = useRef([]);
   const starIcon = useRef([]);
   const downArrow = useRef();
+  const typewriter = useRef([]);
 
   const links = [
     "https://github.com/tianye-chen",
@@ -85,6 +88,7 @@ function App() {
     },
   ];
   
+  // Moving gradient background for name
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     const x = (clientX / window.innerWidth) * 100;
@@ -94,10 +98,31 @@ function App() {
   };
 
   useGSAP(() => {
+
+    // Set initial properties for icons
     icons.current.forEach((icon) => {
       gsap.set(icon, { opacity: 1, rotate: 0, scale: 1})
     })
 
+    const typewriterCursorTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1});
+    const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+    
+    broad_skills.forEach((skill, index) => {
+      typewriter.current.forEach((el) => {
+        typewriterTimeline.to(el, {
+          duration: 2, text: skill, ease: "power1.inOut",
+        });
+      })
+    })
+    
+    typewriter.current.forEach((el) => {
+      typewriterCursorTimeline.fromTo(el, 
+        {borderRightColor: "#10b981", duration: 1, repeat: -1, ease: "steps(1)"},
+        {borderRightColor: "transparent", duration: 1, repeat: -1, ease: "steps(1)"}
+      )
+    })
+    
+    // Down arrow icon
     gsap.to(downArrow.current, {
       y: 10,
       repeat: -1,
@@ -111,6 +136,10 @@ function App() {
         gsap.killTweensOf(icon)
       })
 
+      typewriter.current.forEach((tw) => {
+        gsap.killTweensOf(tw)
+      })
+
       gsap.killTweensOf(downArrow.current)
     }
   }, []);
@@ -119,6 +148,7 @@ function App() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
     gsap.to(icons.current[index], {
       rotate: rand(-20, 20),
@@ -142,14 +172,14 @@ function App() {
     <div class="min-h-screen" onMouseMove={handleMouseMove}>
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
-      <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden text-center md:text-left">
+      <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden text-center md:text-left pb-24">
         <div class="">
-          <h1 class="flex items-center text-3xl font-extrabold text-emerald-500 font-stretch-150%">
+          <h1 class="flex items-center justify-center md:justify-start text-3xl font-extrabold text-emerald-500 font-stretch-150%">
             {" "}
             <PiHandWavingFill class="mr-2" /> Hello, I'm{" "}
           </h1>
           <h1
-            class="mb-4 bg-clip-text text-6xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out"
+            class="mb-4 bg-clip-text text-5xl md:text-6xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out font-roboto"
             style={{
               backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
             }}
@@ -159,13 +189,19 @@ function App() {
           <p class="mb-4 text-xl font-bold text-emerald-500">
             Master's Graduate in Computer Science
           </p>
-          <p class="font-light">
-            {" "}
-            Specializing in machine learning and deep learning
+
+          <p class="font-light text-4xl absolute text-center hidden md:block">
+              Specializing in <span class='border-r-2 border-emerald-500 pr-1' ref={(el) => (typewriter.current[0] = el)}>{broad_skills[broad_skills.length - 1]}</span>
           </p>
+
+          <div class="absolute min-w-screen font-light text-2xl left-1 text-center flex gap-2 flex-col items-center md:hidden">
+            <p> Specializing in </p>
+            <span class='border-r-2 border-emerald-500 pr-1' ref={(el) => (typewriter.current[1] = el)}></span>
+          </div>
+
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class='text-2xl font-semibold'>Let's Talk</h1>
+          <h1 class='text-2xl font-lexend'>Let's Connect</h1>
           <div class="flex gap-6 text-3xl">
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
                 <a key={index} href={links[index]} target="_blank" rel="noopener noreferrer">
