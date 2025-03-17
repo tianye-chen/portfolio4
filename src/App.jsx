@@ -30,8 +30,8 @@ function App() {
   const links = [
     "https://github.com/tianye-chen",
     "https://www.linkedin.com/in/tianyechen/",
-    "mailto:tianyechen1@gmail.com"
-  ]
+    "mailto:tianyechen1@gmail.com",
+  ];
 
   const broad_skills = [
     "Machine Learning",
@@ -87,7 +87,7 @@ function App() {
         "Full-stack web development and professional development program",
     },
   ];
-  
+
   // Moving gradient background for name
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -98,30 +98,45 @@ function App() {
   };
 
   useGSAP(() => {
-
     // Set initial properties for icons
     icons.current.forEach((icon) => {
-      gsap.set(icon, { opacity: 1, rotate: 0, scale: 1})
-    })
+      gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
+    });
 
-    const typewriterCursorTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1});
+    const typewriterCursorTimeline = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 1,
+    });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-    
+
     broad_skills.forEach((skill, index) => {
       typewriter.current.forEach((el) => {
         typewriterTimeline.to(el, {
-          duration: 2, text: skill, ease: "power1.inOut",
+          duration: 2,
+          text: skill,
+          ease: "power1.inOut",
         });
-      })
-    })
-    
+      });
+    });
+
     typewriter.current.forEach((el) => {
-      typewriterCursorTimeline.fromTo(el, 
-        {borderRightColor: "#10b981", duration: 1, repeat: -1, ease: "steps(1)"},
-        {borderRightColor: "transparent", duration: 1, repeat: -1, ease: "steps(1)"}
-      )
-    })
-    
+      typewriterCursorTimeline.fromTo(
+        el,
+        {
+          borderRightColor: "#10b981",
+          duration: 1,
+          repeat: -1,
+          ease: "steps(1)",
+        },
+        {
+          borderRightColor: "transparent",
+          duration: 1,
+          repeat: -1,
+          ease: "steps(1)",
+        },
+      );
+    });
+
     // Down arrow icon
     gsap.to(downArrow.current, {
       y: 10,
@@ -129,24 +144,24 @@ function App() {
       yoyo: true,
       duration: 1,
       ease: "power1.inOut",
-    })
+    });
 
     return () => {
       icons.current.forEach((icon) => {
-        gsap.killTweensOf(icon)
-      })
+        gsap.killTweensOf(icon);
+      });
 
       typewriter.current.forEach((tw) => {
-        gsap.killTweensOf(tw)
-      })
+        gsap.killTweensOf(tw);
+      });
 
-      gsap.killTweensOf(downArrow.current)
-    }
+      gsap.killTweensOf(downArrow.current);
+    };
   }, []);
 
   const rand = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  };
 
   // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
@@ -172,14 +187,14 @@ function App() {
     <div class="min-h-screen" onMouseMove={handleMouseMove}>
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
-      <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden text-center md:text-left pb-24">
+      <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
         <div class="">
-          <h1 class="flex items-center justify-center md:justify-start text-3xl font-extrabold text-emerald-500 font-stretch-150%">
+          <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start">
             {" "}
             <PiHandWavingFill class="mr-2" /> Hello, I'm{" "}
           </h1>
           <h1
-            class="mb-4 bg-clip-text text-5xl md:text-6xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out font-roboto"
+            class="font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out md:text-6xl"
             style={{
               backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
             }}
@@ -190,34 +205,50 @@ function App() {
             Master's Graduate in Computer Science
           </p>
 
-          <p class="font-light text-4xl absolute text-center hidden md:block">
-              Specializing in <span class='border-r-2 border-emerald-500 pr-1' ref={(el) => (typewriter.current[0] = el)}>{broad_skills[broad_skills.length - 1]}</span>
+          <p class="absolute hidden text-center text-4xl font-light md:block">
+            Specializing in{" "}
+            <span
+              class="border-r-2 border-emerald-500 pr-1"
+              ref={(el) => (typewriter.current[0] = el)}
+            >
+              {broad_skills[broad_skills.length - 1]}
+            </span>
           </p>
 
-          <div class="absolute min-w-screen font-light text-2xl left-1 text-center flex gap-2 flex-col items-center md:hidden">
+          <div class="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden">
             <p> Specializing in </p>
-            <span class='border-r-2 border-emerald-500 pr-1' ref={(el) => (typewriter.current[1] = el)}></span>
+            <span
+              class="border-r-2 border-emerald-500 pr-1"
+              ref={(el) => (typewriter.current[1] = el)}
+            ></span>
           </div>
-
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class='text-2xl font-lexend'>Let's Connect</h1>
+          <h1 class="font-lexend text-2xl">Let's Connect</h1>
           <div class="flex gap-6 text-3xl">
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
-                <a key={index} href={links[index]} target="_blank" rel="noopener noreferrer">
-                  <Icon
-                    key={index}
-                    ref={(uniqueRef) => (icons.current[index] = uniqueRef)}
-                    onMouseEnter={() => handleIconMouseEnter(index)}
-                    onMouseLeave={() => handleIconMouseLeave(index)}
-                    class="cursor-pointer"
-                  />
-                </a>
-              ))}
-            </div>
+              <a
+                key={index}
+                href={links[index]}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon
+                  key={index}
+                  ref={(uniqueRef) => (icons.current[index] = uniqueRef)}
+                  onMouseEnter={() => handleIconMouseEnter(index)}
+                  onMouseLeave={() => handleIconMouseLeave(index)}
+                  class="cursor-pointer"
+                />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <IoIosArrowDown class="absolute bottom-10 flex justify-center text-4xl text-emerald-500" ref={downArrow}/>
+        <IoIosArrowDown
+          class="absolute bottom-10 flex justify-center text-4xl text-emerald-500"
+          ref={downArrow}
+        />
       </div>
 
       <section class="bg-teal-50 pt-40 pb-80">
@@ -241,9 +272,7 @@ function App() {
             <InfoBoxLarge
               icon={<FaLaptopCode />}
               title="What I can do"
-              description={
-                "Areas of expertise that I have worked on."
-              }
+              description={"Areas of expertise that I have worked on."}
               content={broad_skills}
               corner={"left"}
             />
