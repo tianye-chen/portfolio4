@@ -26,7 +26,7 @@ function App() {
   const handWaveIcon = useRef([]);
   const downArrow = useRef();
   const typewriter = useRef([]);
-  const test = useRef()
+  const test = useRef();
 
   const links = [
     "https://github.com/tianye-chen",
@@ -71,14 +71,14 @@ function App() {
       university: "SUNY University at Buffalo",
       focus: "Artificial Intelligence",
       duration: "2023 - 2025",
-      bg: "ub.jpg"
+      bg: "ub",
     },
     {
       degree: "Bachelor of Science in Computer Science",
       university: "CUNY Brooklyn College",
       focus: "General Software Engineering",
       duration: "2019 - 2023",
-      bg: "bc.jpg"
+      bg: "bc",
     },
   ];
 
@@ -112,12 +112,12 @@ function App() {
       repeatDelay: 1,
     });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-    const handWaveTimeline = gsap.timeline({ repeat: 2})
+    const handWaveTimeline = gsap.timeline({ repeat: 2 });
 
     handWaveTimeline
-      .to(handWaveIcon.current, {rotate: 15, duration: 0.25, ease: 'none'})
-      .to(handWaveIcon.current, {rotate: -15, duration: 0.5, ease: 'none'})
-      .to(handWaveIcon.current, {rotate: 0, duration: 0.25, ease: 'none'})
+      .to(handWaveIcon.current, { rotate: 15, duration: 0.25, ease: "none" })
+      .to(handWaveIcon.current, { rotate: -15, duration: 0.5, ease: "none" })
+      .to(handWaveIcon.current, { rotate: 0, duration: 0.25, ease: "none" });
 
     broad_skills.forEach((skill, index) => {
       typewriter.current.forEach((el) => {
@@ -198,8 +198,12 @@ function App() {
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
-        <div class="absolute hidden sm:block sm:text-[15rem] md:text-[26rem] pointer-events-none font-lexend font-bold min-w-screen text-left -top-1.5 left-4 opacity-5 text-base/85">TIANYE</div>
-        <div class="absolute hidden sm:block sm:text-[15rem] md:text-[26rem] pointer-events-none font-lexend font-bold min-w-screen text-right bottom-0 opacity-5 text-base/85">CHEN</div>
+        <div class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]">
+          TIANYE
+        </div>
+        <div class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]">
+          CHEN
+        </div>
 
         <div class="">
           <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start">
@@ -237,7 +241,9 @@ function App() {
           </div>
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class="font-lexend text-2xl" ref={test}>Let's Connect</h1>
+          <h1 class="font-lexend text-2xl" ref={test}>
+            Let's Connect
+          </h1>
           <div class="flex gap-6 text-3xl">
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
               <a
@@ -316,8 +322,12 @@ function App() {
           </h2>
           <div class="grid grid-cols-1 gap-12">
             {education.map((edu, index) => (
-              <div class={`relative text-white border-l-4 border-emerald-500 pl-8 bg-[url(./assets/${edu["bg"]})] bg-center rounded-2xl z-10 py-2`}>
-                <div class="absolute inset-0 bg-black opacity-15 -z-10 rounded-2xl"></div>
+              <div
+                key={index}
+                class={`relative z-10 rounded-2xl border-l-4 border-emerald-500 bg-center py-2 pl-8 text-white`}
+                style={{ backgroundImage: `url(${edu.bg}.jpg)` }}
+              >
+                <div class="absolute inset-0 -z-10 rounded-2xl bg-black opacity-15"></div>
                 <p class="text-lg font-semibold">
                   {edu["university"]}{" "}
                   <span class="text-sm text-gray-300">{edu["duration"]}</span>
