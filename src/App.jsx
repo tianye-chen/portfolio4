@@ -23,9 +23,10 @@ function App() {
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const icons = useRef([]);
-  const starIcon = useRef([]);
+  const handWaveIcon = useRef([]);
   const downArrow = useRef();
   const typewriter = useRef([]);
+  const test = useRef()
 
   const links = [
     "https://github.com/tianye-chen",
@@ -70,11 +71,14 @@ function App() {
       university: "SUNY University at Buffalo",
       focus: "Artificial Intelligence",
       duration: "2023 - 2025",
+      bg: "ub.jpg"
     },
     {
       degree: "Bachelor of Science in Computer Science",
       university: "CUNY Brooklyn College",
+      focus: "General Software Engineering",
       duration: "2019 - 2023",
+      bg: "bc.jpg"
     },
   ];
 
@@ -108,6 +112,12 @@ function App() {
       repeatDelay: 1,
     });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+    const handWaveTimeline = gsap.timeline({ repeat: 2})
+
+    handWaveTimeline
+      .to(handWaveIcon.current, {rotate: 15, duration: 0.25, ease: 'none'})
+      .to(handWaveIcon.current, {rotate: -15, duration: 0.5, ease: 'none'})
+      .to(handWaveIcon.current, {rotate: 0, duration: 0.25, ease: 'none'})
 
     broad_skills.forEach((skill, index) => {
       typewriter.current.forEach((el) => {
@@ -188,10 +198,13 @@ function App() {
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
+        <div class="absolute hidden sm:block sm:text-[15rem] md:text-[26rem] pointer-events-none font-lexend font-bold min-w-screen text-left -top-1.5 left-4 opacity-5 text-base/85">TIANYE</div>
+        <div class="absolute hidden sm:block sm:text-[15rem] md:text-[26rem] pointer-events-none font-lexend font-bold min-w-screen text-right bottom-0 opacity-5 text-base/85">CHEN</div>
+
         <div class="">
           <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start">
             {" "}
-            <PiHandWavingFill class="mr-2" /> Hello, I'm{" "}
+            <PiHandWavingFill class="mr-2" ref={handWaveIcon} /> Hello, I'm{" "}
           </h1>
           <h1
             class="font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out md:text-6xl"
@@ -224,7 +237,7 @@ function App() {
           </div>
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class="font-lexend text-2xl">Let's Connect</h1>
+          <h1 class="font-lexend text-2xl" ref={test}>Let's Connect</h1>
           <div class="flex gap-6 text-3xl">
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
               <a
@@ -303,16 +316,17 @@ function App() {
           </h2>
           <div class="grid grid-cols-1 gap-12">
             {education.map((edu, index) => (
-              <div class="border-l-2 border-emerald-200 pl-8">
+              <div class={`relative text-white border-l-4 border-emerald-500 pl-8 bg-[url(./assets/${edu["bg"]})] bg-center rounded-2xl z-10 py-2`}>
+                <div class="absolute inset-0 bg-black opacity-15 -z-10 rounded-2xl"></div>
                 <p class="text-lg font-semibold">
                   {edu["university"]}{" "}
-                  <span class="text-sm text-gray-500">{edu["duration"]}</span>
+                  <span class="text-sm text-gray-300">{edu["duration"]}</span>
                 </p>
-                <p class="mb-2 font-semibold text-balance text-gray-500">
+                <p class="mb-2 font-semibold text-balance text-gray-300">
                   {edu["degree"]}
                 </p>
                 {edu["focus"] && (
-                  <p class="text-gray-500">Focus in {edu["focus"]}</p>
+                  <p class="text-gray-300">Focus in {edu["focus"]}</p>
                 )}
               </div>
             ))}
