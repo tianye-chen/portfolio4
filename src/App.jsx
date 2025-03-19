@@ -95,6 +95,8 @@ function App() {
         "PyTorch",
         "Optuna",
         "LLM",
+        "HuggingFace",
+        "DeepSpeed",
         "Parallelization",
         "Git",
         "Agile",
