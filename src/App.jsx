@@ -15,6 +15,7 @@ import { PiHandWavingFill } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
+import { SkillPill } from "./Components/SkillPill";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -84,11 +85,40 @@ function App() {
 
   const experience = [
     {
+      title: "Intern",
+      company: "S&P GLobal",
+      duration: "Summer 2024",
+      description:
+        "Assisted with training and fine-tuning on Large Language Models",
+      skills: [
+        "Python",
+        "PyTorch",
+        "Optuna",
+        "LLM",
+        "Parallelization",
+        "Git",
+        "Agile",
+        "Scrum",
+      ],
+    },
+    {
       title: "Fellow",
       company: "CUNY Tech Prep",
       duration: "2022 - 2023",
       description:
         "Full-stack web development and professional development program",
+      skills: [
+        "JavaScript",
+        "React",
+        "TailwindCSS",
+        "Express",
+        "PostgreSQL",
+        "Git",
+        "MVC",
+        "Agile",
+        "Scrum",
+        "CI/CD",
+      ],
     },
   ];
 
@@ -352,15 +382,21 @@ function App() {
           </h2>
           <div class="grid grid-cols-1 gap-12">
             {experience.map((exp, index) => (
-              <div class="border-l-2 border-emerald-200 pl-8">
+              <div key={index} class="border-l-2 border-emerald-200 pl-8">
                 <p class="text-lg font-semibold">
                   {exp["company"]}{" "}
                   <span class="text-sm text-gray-500">{exp["duration"]}</span>
                 </p>
-                <p class="mb-2 font-semibold text-balance text-gray-500">
+                <p class="font-semibold text-balance text-gray-500">
                   {exp["title"]}
                 </p>
-                <p class="text-gray-500">{exp["description"]}</p>
+                <p class="mb-4 text-gray-500">{exp["description"]}</p>
+
+                <div class="flex flex-wrap gap-2">
+                  {exp["skills"].map((ExpSkill, SkillIndex) => (
+                    <SkillPill skill={ExpSkill} />
+                  ))}
+                </div>
               </div>
             ))}
           </div>
