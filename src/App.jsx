@@ -24,7 +24,7 @@ function App() {
   gsap.registerPlugin(useGSAP);
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
-  const [eduInFocus, setEduInFocus] = React.useState(null)
+  const [eduInFocus, setEduInFocus] = React.useState(null);
   const icons = useRef([]);
   const handWaveIcon = useRef([]);
   const downArrow = useRef();
@@ -136,9 +136,9 @@ function App() {
   };
 
   const handleSetEduInFocus = (index) => {
-    console.log(index)
-    setEduInFocus(prev => (index === prev ? null : index));
-  }
+    console.log(index);
+    setEduInFocus((prev) => (index === prev ? null : index));
+  };
 
   useGSAP(() => {
     // Set initial properties for icons
@@ -281,8 +281,9 @@ function App() {
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
           <h1 class="font-lexend text-2xl" ref={test}>
-            Let's <span class='relative before:absolute before:-inset-1 before:bg-emerald-500 before:skew-y-4'>
-              <span class='relative text-white mr-1'>Connect</span>
+            Let's{" "}
+            <span class="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
+              <span class="relative mr-1 text-white">Connect</span>
             </span>
           </h1>
           <div class="flex gap-6 text-3xl">
@@ -357,12 +358,15 @@ function App() {
 
       <section class="bg-teal-50 py-40">
         <div class="relative mx-auto px-4">
-          <h2 class="absolute flex items-center text-[15rem] -top-[16.3rem] font-bold pointer-events-none">
-            {/*<LuGraduationCap class="mr-2" /> */} <span class='opacity-25'>Education</span>
+          <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
+            {/*<LuGraduationCap class="mr-2" /> */}{" "}
+            <span class="opacity-25">Education</span>
           </h2>
-          <div class={`relative flex gap-4 md:gap-0 min-h-[80vh] overflow-hidden ${eduInFocus != null? 'grid-cols-1' : ''} rounded-4xl`}>
+          <div
+            class={`relative flex min-h-[80vh] gap-4 overflow-hidden md:gap-0 ${eduInFocus != null ? "grid-cols-1" : ""} rounded-4xl`}
+          >
             {education.map((edu, index) => (
-              <EducationBox 
+              <EducationBox
                 key={index}
                 idx={index}
                 degree={edu["degree"]}
@@ -370,7 +374,7 @@ function App() {
                 focusArea={edu["focusArea"]}
                 duration={edu["duration"]}
                 bg={edu["bg"]}
-                visible={eduInFocus === index | eduInFocus === null}
+                visible={(eduInFocus === index) | (eduInFocus === null)}
                 selected={eduInFocus === index}
                 handleFocus={() => handleSetEduInFocus(index)}
               />
@@ -380,12 +384,13 @@ function App() {
       </section>
 
       <section class="py-40">
-        <div class="relative mx-autopx-4">
-          <h2 class="absolute flex justify-around text-[15rem] -top-[14rem] mb-8 text-3xl font-bold -z-10">
-            {/*<LuBriefcase class="mr-2" />*/} <span class='opacity-25 '>Experience</span>
+        <div class="mx-autopx-4 relative">
+          <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            {/*<LuBriefcase class="mr-2" />*/}{" "}
+            <span class="opacity-25">Experience</span>
           </h2>
-          <div class='min-w-screen flex items-center justify-center'>
-            <div class="grid grid-cols-1 gap-12 z-10">
+          <div class="flex min-w-screen items-center justify-center">
+            <div class="z-10 grid grid-cols-1 gap-12">
               {experience.map((exp, index) => (
                 <div key={index} class="border-l-2 border-emerald-200 pl-8">
                   <p class="text-lg font-semibold">
