@@ -16,6 +16,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
+import { EducationBox } from "./Components/EducationBox";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,7 @@ function App() {
   gsap.registerPlugin(useGSAP);
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
+  const [eduInFocus, setEduInFocus] = React.useState(null)
   const icons = useRef([]);
   const handWaveIcon = useRef([]);
   const downArrow = useRef();
@@ -70,14 +72,14 @@ function App() {
     {
       degree: "Master of Science in Computer Science",
       university: "SUNY University at Buffalo",
-      focus: "Artificial Intelligence",
+      focusArea: "Artificial Intelligence",
       duration: "2023 - 2025",
       bg: "ub",
     },
     {
       degree: "Bachelor of Science in Computer Science",
       university: "CUNY Brooklyn College",
-      focus: "General Software Engineering",
+      focusArea: "General Software Engineering",
       duration: "2019 - 2023",
       bg: "bc",
     },
@@ -132,6 +134,11 @@ function App() {
 
     setGradPos({ x, y });
   };
+
+  const handleSetEduInFocus = (index) => {
+    console.log(index)
+    setEduInFocus(prev => (index === prev ? null : index));
+  }
 
   useGSAP(() => {
     // Set initial properties for icons
@@ -226,7 +233,7 @@ function App() {
   };
 
   return (
-    <div class="min-h-screen" onMouseMove={handleMouseMove}>
+    <div class="min-h-screen overflow-y-hidden" onMouseMove={handleMouseMove}>
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
@@ -274,7 +281,9 @@ function App() {
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
           <h1 class="font-lexend text-2xl" ref={test}>
-            Let's Connect
+            Let's <span class='relative before:absolute before:-inset-1 before:bg-emerald-500 before:skew-y-4'>
+              <span class='relative text-white mr-1'>Connect</span>
+            </span>
           </h1>
           <div class="flex gap-6 text-3xl">
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
@@ -346,61 +355,56 @@ function App() {
         </div>
       </section>
 
-      <section class="bg-teal-50 py-20">
-        <div class="mx-auto max-w-4xl px-4">
-          <h2 class="mb-8 flex items-center text-3xl font-bold">
-            {" "}
-            <LuGraduationCap class="mr-2" /> Education
+      <section class="bg-teal-50 py-40">
+        <div class="relative mx-auto px-4">
+          <h2 class="absolute flex items-center text-[15rem] -top-[16.3rem] font-bold pointer-events-none">
+            {/*<LuGraduationCap class="mr-2" /> */} <span class='opacity-25'>Education</span>
           </h2>
-          <div class="grid grid-cols-1 gap-12">
+          <div class={`relative flex gap-4 md:gap-0 min-h-[80vh] overflow-hidden ${eduInFocus != null? 'grid-cols-1' : ''} rounded-4xl`}>
             {education.map((edu, index) => (
-              <div
+              <EducationBox 
                 key={index}
-                class={`relative z-10 rounded-2xl border-l-4 border-emerald-500 bg-center py-2 pl-8 text-white`}
-                style={{ backgroundImage: `url(${edu.bg}.jpg)` }}
-              >
-                <div class="absolute inset-0 -z-10 rounded-2xl bg-black opacity-15"></div>
-                <p class="text-lg font-semibold">
-                  {edu["university"]}{" "}
-                  <span class="text-sm text-gray-300">{edu["duration"]}</span>
-                </p>
-                <p class="mb-2 font-semibold text-balance text-gray-300">
-                  {edu["degree"]}
-                </p>
-                {edu["focus"] && (
-                  <p class="text-gray-300">Focus in {edu["focus"]}</p>
-                )}
-              </div>
+                idx={index}
+                degree={edu["degree"]}
+                university={edu["university"]}
+                focusArea={edu["focusArea"]}
+                duration={edu["duration"]}
+                bg={edu["bg"]}
+                visible={eduInFocus === index | eduInFocus === null}
+                selected={eduInFocus === index}
+                handleFocus={() => handleSetEduInFocus(index)}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      <section class="py-20">
-        <div class="mx-auto max-w-4xl px-4">
-          <h2 class="mb-8 flex items-center text-3xl font-bold">
-            {" "}
-            <LuBriefcase class="mr-2" /> Experience{" "}
+      <section class="py-40">
+        <div class="relative mx-autopx-4">
+          <h2 class="absolute flex justify-around text-[15rem] -top-[14rem] mb-8 text-3xl font-bold -z-10">
+            {/*<LuBriefcase class="mr-2" />*/} <span class='opacity-25 '>Experience</span>
           </h2>
-          <div class="grid grid-cols-1 gap-12">
-            {experience.map((exp, index) => (
-              <div key={index} class="border-l-2 border-emerald-200 pl-8">
-                <p class="text-lg font-semibold">
-                  {exp["company"]}{" "}
-                  <span class="text-sm text-gray-500">{exp["duration"]}</span>
-                </p>
-                <p class="font-semibold text-balance text-gray-500">
-                  {exp["title"]}
-                </p>
-                <p class="mb-4 text-gray-500">{exp["description"]}</p>
+          <div class='min-w-screen flex items-center justify-center'>
+            <div class="grid grid-cols-1 gap-12 z-10">
+              {experience.map((exp, index) => (
+                <div key={index} class="border-l-2 border-emerald-200 pl-8">
+                  <p class="text-lg font-semibold">
+                    {exp["company"]}{" "}
+                    <span class="text-sm text-gray-500">{exp["duration"]}</span>
+                  </p>
+                  <p class="font-semibold text-balance text-gray-500">
+                    {exp["title"]}
+                  </p>
+                  <p class="mb-4 text-gray-500">{exp["description"]}</p>
 
-                <div class="flex flex-wrap gap-2">
-                  {exp["skills"].map((ExpSkill, SkillIndex) => (
-                    <SkillPill skill={ExpSkill} />
-                  ))}
+                  <div class="flex flex-wrap gap-2">
+                    {exp["skills"].map((ExpSkill, SkillIndex) => (
+                      <SkillPill skill={ExpSkill} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
