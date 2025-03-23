@@ -25,11 +25,11 @@ function App() {
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const [eduInFocus, setEduInFocus] = React.useState(null);
-  const icons = useRef([]);
-  const handWaveIcon = useRef([]);
-  const downArrow = useRef();
-  const typewriter = useRef([]);
-  const test = useRef();
+  const iconsRef = useRef([]);
+  const handWaveIconRef = useRef([]);
+  const downArrowRef = useRef();
+  const typewriterRef = useRef([]);
+  const testRef = useRef();
 
   const links = [
     "https://github.com/tianye-chen",
@@ -87,25 +87,6 @@ function App() {
 
   const experience = [
     {
-      title: "Intern",
-      company: "S&P GLobal",
-      duration: "Summer 2024",
-      description:
-        "Assisted with training and fine-tuning on Large Language Models",
-      skills: [
-        "Python",
-        "PyTorch",
-        "Optuna",
-        "HuggingFace",
-        "DeepSpeed",
-        "LLM",
-        "Parallelization",
-        "Git",
-        "Agile",
-        "Scrum",
-      ],
-    },
-    {
       title: "Fellow",
       company: "CUNY Tech Prep",
       duration: "2022 - 2023",
@@ -142,7 +123,7 @@ function App() {
 
   useGSAP(() => {
     // Set initial properties for icons
-    icons.current.forEach((icon) => {
+    iconsRef.current.forEach((icon) => {
       gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
     });
 
@@ -154,12 +135,12 @@ function App() {
     const handWaveTimeline = gsap.timeline({ repeat: 2 });
 
     handWaveTimeline
-      .to(handWaveIcon.current, { rotate: 15, duration: 0.25, ease: "none" })
-      .to(handWaveIcon.current, { rotate: -15, duration: 0.5, ease: "none" })
-      .to(handWaveIcon.current, { rotate: 0, duration: 0.25, ease: "none" });
+      .to(handWaveIconRef.current, { rotate: 15, duration: 0.25, ease: "none" })
+      .to(handWaveIconRef.current, { rotate: -15, duration: 0.5, ease: "none" })
+      .to(handWaveIconRef.current, { rotate: 0, duration: 0.25, ease: "none" });
 
     broad_skills.forEach((skill, index) => {
-      typewriter.current.forEach((el) => {
+      typewriterRef.current.forEach((el) => {
         typewriterTimeline.to(el, {
           duration: 2,
           text: skill,
@@ -168,7 +149,7 @@ function App() {
       });
     });
 
-    typewriter.current.forEach((el) => {
+    typewriterRef.current.forEach((el) => {
       typewriterCursorTimeline.fromTo(
         el,
         {
@@ -187,7 +168,7 @@ function App() {
     });
 
     // Down arrow icon
-    gsap.to(downArrow.current, {
+    gsap.to(downArrowRef.current, {
       y: 10,
       repeat: -1,
       yoyo: true,
@@ -196,15 +177,15 @@ function App() {
     });
 
     return () => {
-      icons.current.forEach((icon) => {
+      iconsRef.current.forEach((icon) => {
         gsap.killTweensOf(icon);
       });
 
-      typewriter.current.forEach((tw) => {
+      typewriterRef.current.forEach((tw) => {
         gsap.killTweensOf(tw);
       });
 
-      gsap.killTweensOf(downArrow.current);
+      gsap.killTweensOf(downArrowRef.current);
     };
   }, []);
 
@@ -214,7 +195,7 @@ function App() {
 
   // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
-    gsap.to(icons.current[index], {
+    gsap.to(iconsRef.current[index], {
       rotate: rand(-20, 20),
       duration: 0.3,
       scale: 1.2,
@@ -223,7 +204,7 @@ function App() {
   };
 
   const handleIconMouseLeave = (index) => {
-    gsap.to(icons.current[index], {
+    gsap.to(iconsRef.current[index], {
       opacity: 1,
       rotate: 0,
       duration: 0.3,
@@ -247,7 +228,8 @@ function App() {
         <div class="">
           <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start">
             {" "}
-            <PiHandWavingFill class="mr-2" ref={handWaveIcon} /> Hello, I'm{" "}
+            <PiHandWavingFill class="mr-2" ref={handWaveIconRef} /> Hello,
+            I'm{" "}
           </h1>
           <h1
             class="font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out md:text-6xl"
@@ -265,7 +247,7 @@ function App() {
             Specializing in{" "}
             <span
               class="border-r-2 border-emerald-500 pr-1"
-              ref={(el) => (typewriter.current[0] = el)}
+              ref={(el) => (typewriterRef.current[0] = el)}
             >
               {broad_skills[broad_skills.length - 1]}
             </span>
@@ -275,12 +257,12 @@ function App() {
             <p> Specializing in </p>
             <span
               class="border-r-2 border-emerald-500 pr-1"
-              ref={(el) => (typewriter.current[1] = el)}
+              ref={(el) => (typewriterRef.current[1] = el)}
             ></span>
           </div>
         </div>
         <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class="font-lexend text-2xl" ref={test}>
+          <h1 class="font-lexend text-2xl" ref={testRef}>
             Let's{" "}
             <span class="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
               <span class="relative mr-1 text-white">Connect</span>
@@ -296,7 +278,7 @@ function App() {
               >
                 <Icon
                   key={index}
-                  ref={(uniqueRef) => (icons.current[index] = uniqueRef)}
+                  ref={(uniqueRef) => (iconsRef.current[index] = uniqueRef)}
                   onMouseEnter={() => handleIconMouseEnter(index)}
                   onMouseLeave={() => handleIconMouseLeave(index)}
                   class="cursor-pointer"
@@ -308,7 +290,7 @@ function App() {
 
         <IoIosArrowDown
           class="absolute bottom-10 flex justify-center text-4xl text-emerald-500"
-          ref={downArrow}
+          ref={downArrowRef}
         />
       </div>
 
@@ -363,7 +345,7 @@ function App() {
             <span class="opacity-25">Education</span>
           </h2>
           <div
-            class={`relative flex min-h-[80vh] gap-4 overflow-hidden md:gap-0 ${eduInFocus != null ? "grid-cols-1" : ""} rounded-4xl`}
+            class={`relative flex min-h-[80vh] flex-col gap-4 overflow-hidden rounded-4xl md:flex-row md:gap-0`}
           >
             {education.map((edu, index) => (
               <EducationBox
