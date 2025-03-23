@@ -87,25 +87,6 @@ function App() {
 
   const experience = [
     {
-      title: "Intern",
-      company: "S&P GLobal",
-      duration: "Summer 2024",
-      description:
-        "Assisted with training and fine-tuning on Large Language Models",
-      skills: [
-        "Python",
-        "PyTorch",
-        "Optuna",
-        "HuggingFace",
-        "DeepSpeed",
-        "LLM",
-        "Parallelization",
-        "Git",
-        "Agile",
-        "Scrum",
-      ],
-    },
-    {
       title: "Fellow",
       company: "CUNY Tech Prep",
       duration: "2022 - 2023",
