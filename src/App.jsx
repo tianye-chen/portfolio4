@@ -17,6 +17,7 @@ import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
 import { EducationBox } from "./Components/EducationBox";
+import { animTransition } from "./Components/helpers";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -75,6 +76,15 @@ function App() {
       focusArea: "Artificial Intelligence",
       duration: "2023 - 2025",
       bg: "ub",
+      courses: [
+        "Introduction to Machine Learning",
+        "Reinforcement Learning",
+        "Introduction to Computer Vision",
+        "Data Models and Query Language",
+        "Data Intensive Computing",
+        "Deep Learning",
+      ],
+      gpa: 3.6,
     },
     {
       degree: "Bachelor of Science in Computer Science",
@@ -82,6 +92,15 @@ function App() {
       focusArea: "General Software Engineering",
       duration: "2019 - 2023",
       bg: "bc",
+      courses: [
+        "Data Structures",
+        "Game Design and Development",
+        "Analysis of Algorithms",
+        "Large-Scale Web Applications",
+        "Multimedia Computing",
+        "Modern Programming Techniques",
+      ],
+      gpa: 3.7,
     },
   ];
 
@@ -232,7 +251,7 @@ function App() {
             I'm{" "}
           </h1>
           <h1
-            class="font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent transition-all duration-450 ease-in-out md:text-6xl"
+            class={`font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent md:text-6xl`}
             style={{
               backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
             }}
@@ -356,6 +375,8 @@ function App() {
                 focusArea={edu["focusArea"]}
                 duration={edu["duration"]}
                 bg={edu["bg"]}
+                courses={edu["courses"]}
+                gpa={edu["gpa"]}
                 visible={(eduInFocus === index) | (eduInFocus === null)}
                 selected={eduInFocus === index}
                 handleFocus={() => handleSetEduInFocus(index)}
