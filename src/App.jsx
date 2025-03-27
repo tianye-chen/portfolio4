@@ -17,7 +17,15 @@ import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
 import { EducationBox } from "./Components/EducationBox";
-import { links, broad_skills, prog_skills, hobbies, education, experience, projects } from "./Components/data";
+import {
+  links,
+  broad_skills,
+  prog_skills,
+  hobbies,
+  education,
+  experience,
+  projects,
+} from "./Components/data";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -293,7 +301,7 @@ function App() {
       </section>
 
       <section class="py-40">
-        <div class="mx-auto px-4 relative">
+        <div class="relative mx-auto px-4">
           <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
             {/*<LuBriefcase class="mr-2" />*/}
             <span class="opacity-25">Experience</span>
@@ -303,7 +311,7 @@ function App() {
               {experience.map((exp, index) => (
                 <div key={index} class="border-l-2 border-emerald-200 pl-8">
                   <p class="text-lg font-semibold">
-                    {exp["company"]} {" "}
+                    {exp["company"]}{" "}
                     <span class="text-sm text-gray-500">{exp["duration"]}</span>
                   </p>
                   <p class="font-semibold text-balance text-gray-500">
@@ -324,37 +332,34 @@ function App() {
       </section>
 
       <section class="bg-teal-50 py-40">
-        <div class="mx-auto px-4 relative">
-          <h2 class="absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            {/*<FaLaptopCode class="mr-2" />*/} 
+        <div class="relative mx-auto px-4">
+          <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            {/*<FaLaptopCode class="mr-2" />*/}
             <span class="opacity-25">Projects</span>
           </h2>
 
-          <div class='flex min-w-screen items-center justify-center'>
-            <div class='z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
+          <div class="flex min-w-screen items-center justify-center">
+            <div class="z-10 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((proj, index) => (
                 <div key={index} class="border-l-2 border-emerald-200 px-8">
                   <p class="text-lg font-semibold">
-                    {proj["title"]} {" "}
+                    {proj["title"]}{" "}
                     <span class="text-sm text-gray-500">{proj["year"]}</span>
                   </p>
                   <div>
                     {proj["attributes"].map((att, attIndex) => (
-                      <span>{att} {" "}</span>
+                      <span>{att} </span>
                     ))}
                   </div>
-                  <p class="mb-4 text-gray-500">
-                    {proj["description"]}
-                  </p>
+                  <p class="mb-4 text-gray-500">{proj["description"]}</p>
                   <div class="flex flex-wrap gap-2">
                     {proj["tech"].map((tech, techIndex) => (
-                      <SkillPill skill={tech}/>
+                      <SkillPill skill={tech} />
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-              
           </div>
         </div>
       </section>
