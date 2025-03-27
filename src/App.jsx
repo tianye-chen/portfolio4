@@ -17,7 +17,7 @@ import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
 import { EducationBox } from "./Components/EducationBox";
-import { animTransition } from "./Components/helpers";
+import { links, broad_skills, prog_skills, hobbies, education, experience, projects } from "./Components/data";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -31,100 +31,6 @@ function App() {
   const downArrowRef = useRef();
   const typewriterRef = useRef([]);
   const testRef = useRef();
-
-  const links = [
-    "https://github.com/tianye-chen",
-    "https://www.linkedin.com/in/tianyechen/",
-    "mailto:tianyechen1@gmail.com",
-  ];
-
-  const broad_skills = [
-    "Machine Learning",
-    "Deep Learning",
-    "Reinforcement Learning",
-    "Data Science",
-    "Web Development",
-    "Software Engineering",
-    "Game Design & Development",
-  ];
-
-  const prog_skills = [
-    "Python",
-    "PyTorch",
-    "JavaScript",
-    "React",
-    "C#",
-    "Unity",
-    "Java",
-    "Firebase",
-  ];
-
-  const hobbies = [
-    "Video Games",
-    "Model Building",
-    "Cooking",
-    "Gym",
-    "Gardening",
-    "Hardware Tinkering",
-    "Visiting New Places",
-  ];
-
-  const education = [
-    {
-      degree: "Master of Science in Computer Science",
-      university: "SUNY University at Buffalo",
-      focusArea: "Artificial Intelligence",
-      duration: "2023 - 2025",
-      bg: "ub",
-      courses: [
-        "Introduction to Machine Learning",
-        "Reinforcement Learning",
-        "Introduction to Computer Vision",
-        "Data Models and Query Language",
-        "Data Intensive Computing",
-        "Deep Learning",
-      ],
-      gpa: 3.6,
-    },
-    {
-      degree: "Bachelor of Science in Computer Science",
-      university: "CUNY Brooklyn College",
-      focusArea: "General Software Engineering",
-      duration: "2019 - 2023",
-      bg: "bc",
-      courses: [
-        "Data Structures",
-        "Game Design and Development",
-        "Analysis of Algorithms",
-        "Large-Scale Web Applications",
-        "Multimedia Computing",
-        "Modern Programming Techniques",
-      ],
-      gpa: 3.7,
-    },
-  ];
-
-  const experience = [
-    {
-      title: "Fellow",
-      company: "CUNY Tech Prep",
-      duration: "2022 - 2023",
-      description:
-        "Full-stack web development and professional development program",
-      skills: [
-        "JavaScript",
-        "React",
-        "TailwindCSS",
-        "Express",
-        "PostgreSQL",
-        "Git",
-        "MVC",
-        "Agile",
-        "Scrum",
-        "CI/CD",
-      ],
-    },
-  ];
 
   // Moving gradient background for name
   const handleMouseMove = (e) => {
@@ -387,9 +293,9 @@ function App() {
       </section>
 
       <section class="py-40">
-        <div class="mx-autopx-4 relative">
+        <div class="mx-auto px-4 relative">
           <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            {/*<LuBriefcase class="mr-2" />*/}{" "}
+            {/*<LuBriefcase class="mr-2" />*/}
             <span class="opacity-25">Experience</span>
           </h2>
           <div class="flex min-w-screen items-center justify-center">
@@ -397,7 +303,7 @@ function App() {
               {experience.map((exp, index) => (
                 <div key={index} class="border-l-2 border-emerald-200 pl-8">
                   <p class="text-lg font-semibold">
-                    {exp["company"]}{" "}
+                    {exp["company"]} {" "}
                     <span class="text-sm text-gray-500">{exp["duration"]}</span>
                   </p>
                   <p class="font-semibold text-balance text-gray-500">
@@ -417,12 +323,39 @@ function App() {
         </div>
       </section>
 
-      <section class="bg-teal-50 py-20">
-        <div class="mx-auto max-w-4xl px-4">
-          <h2 class="mb-8 flex items-center text-3xl font-bold">
-            {" "}
-            <FaLaptopCode class="mr-2" /> Projects{" "}
+      <section class="bg-teal-50 py-40">
+        <div class="mx-auto px-4 relative">
+          <h2 class="absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            {/*<FaLaptopCode class="mr-2" />*/} 
+            <span class="opacity-25">Projects</span>
           </h2>
+
+          <div class='flex min-w-screen items-center justify-center'>
+            <div class='z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12'>
+              {projects.map((proj, index) => (
+                <div key={index} class="border-l-2 border-emerald-200 px-8">
+                  <p class="text-lg font-semibold">
+                    {proj["title"]} {" "}
+                    <span class="text-sm text-gray-500">{proj["year"]}</span>
+                  </p>
+                  <div>
+                    {proj["attributes"].map((att, attIndex) => (
+                      <span>{att} {" "}</span>
+                    ))}
+                  </div>
+                  <p class="mb-4 text-gray-500">
+                    {proj["description"]}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {proj["tech"].map((tech, techIndex) => (
+                      <SkillPill skill={tech}/>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+              
+          </div>
         </div>
       </section>
     </div>
