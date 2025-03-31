@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Matter from "matter-js";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -17,6 +18,7 @@ import { FaGithub, FaLaptopCode, FaRegUser } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
 import { EducationBox } from "./Components/EducationBox";
+import { FaApple } from "react-icons/fa6";
 import {
   links,
   broad_skills,
@@ -34,11 +36,42 @@ function App() {
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const [eduInFocus, setEduInFocus] = React.useState(null);
-  const iconsRef = useRef([]);
+  const socialIconsRef = useRef([]);
+  const skillIconsRef = useRef();
   const handWaveIconRef = useRef([]);
   const downArrowRef = useRef();
   const typewriterRef = useRef([]);
   const testRef = useRef();
+  const infoBoxRef = useRef();
+  const matterContainer = useRef();
+
+  const infoBoxes = [
+    {
+      icon: <FaLaptopCode />,
+      title: "What I can do",
+      description: "Areas of expertise that I have worked on.",
+      content: broad_skills,
+      corner: "left",
+    },
+    {
+      icon: <IoCodeSlash />,
+      title: "What I know",
+      description: "Programming languages and tools I am proficient in.",
+      content: prog_skills,
+      corner: null,
+    },
+    {
+      icon: <IoExtensionPuzzleOutline />,
+      title: "What my hobbies are",
+      description: "Interests and activities I enjoy outside of work.",
+      content: hobbies,
+      corner: "right",
+    },
+  ];
+
+  const rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
   // Moving gradient background for name
   const handleMouseMove = (e) => {
@@ -54,23 +87,150 @@ function App() {
     setEduInFocus((prev) => (index === prev ? null : index));
   };
 
+  useEffect(() => {
+    // MatterJS physics simulation on skill icons
+    matterContainer.current.innerHTML = "";
+    const OFFSET = 280;
+    const THICC = 60;
+
+    const engine = Matter.Engine.create();
+    const runner = Matter.Runner.create();
+    const world = engine.world;
+    const composite = Matter.Composite;
+    const render = Matter.Render.create({
+      element: matterContainer.current,
+      engine: engine,
+      options: {
+        height: matterContainer.current.clientHeight + OFFSET,
+        width: matterContainer.current.clientWidth,
+        wireframes: false,
+        showAngleIndicator: false,
+        background: "transparent",
+      },
+    });
+
+    const mouse = Matter.Mouse.create(render.canvas);
+    const mouseConstraints = Matter.MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: false,
+        },
+      },
+    });
+
+    const ground = Matter.Bodies.rectangle(
+      matterContainer.current.clientWidth / 2,
+      matterContainer.current.clientHeight + OFFSET + THICC / 2,
+      69420,
+      THICC,
+      { isStatic: true },
+    );
+    const roof = Matter.Bodies.rectangle(
+      matterContainer.current.clientWidth / 2,
+      0 - THICC,
+      69420,
+      THICC,
+      { isStatic: true },
+    );
+    const leftWall = Matter.Bodies.rectangle(
+      0 - THICC / 2,
+      matterContainer.current.clientHeight / 2,
+      THICC,
+      matterContainer.current.clientHeight * 2,
+      { isStatic: true },
+    );
+    const rightWall = Matter.Bodies.rectangle(
+      matterContainer.current.clientWidth + THICC / 2,
+      matterContainer.current.clientHeight / 2,
+      THICC,
+      matterContainer.current.clientHeight * 2,
+      { isStatic: true },
+    );
+
+    mouseConstraints.mouse.element.removeEventListener(
+      "wheel",
+      mouseConstraints.mouse.mousewheel,
+    );
+    mouseConstraints.mouse.element.removeEventListener(
+      "DOMMouseScroll",
+      mouseConstraints.mouse.mousewheel,
+    );
+
+    composite.add(engine.world, mouseConstraints);
+    composite.add(world, [roof, ground, leftWall, rightWall]);
+
+    function eepy(time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    async function spawnObjs() {
+      for (let i = 0; i < 300; i++) {
+        let circle = Matter.Bodies.circle(
+          matterContainer.current.clientWidth / 2 + rand(-5, 5),
+          20,
+          30,
+          {
+            restitution: 0.3,
+            friction: 0.1,
+          },
+        );
+
+        composite.add(world, circle);
+        await eepy(50);
+      }
+    }
+
+    spawnObjs();
+
+    Matter.Render.run(render);
+    Matter.Runner.run(runner, engine);
+
+    function handleResize(matterContainer) {
+      render.canvas.height = matterContainer.current.clientHeight + OFFSET;
+      render.canvas.width = matterContainer.current.clientWidth;
+
+      console.log(render.canvas.height, matterContainer.current.clientHeight);
+
+      Matter.Body.setPosition(
+        ground,
+        Matter.Vector.create(
+          matterContainer.current.clientWidth / 2,
+          matterContainer.clientHeight + OFFSET + THICC / 2,
+        ),
+      );
+
+      Matter.Body.setPosition(
+        rightWall,
+        Matter.Vector.create(
+          matterContainer.current.clientWidth + THICC / 2,
+          matterContainer.clientHeight / 2,
+        ),
+      );
+    }
+
+    window.addEventListener("resize", () => handleResize(matterContainer));
+
+    return () => {
+      Matter.Render.stop(render);
+      Matter.Runner.stop(runner);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useGSAP(() => {
-    // Set initial properties for icons
-    iconsRef.current.forEach((icon) => {
+    // Set initial properties for social media icons on the name page
+    socialIconsRef.current.forEach((icon) => {
       gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
     });
 
+    // For text loop on the name page
     const typewriterCursorTimeline = gsap.timeline({
       repeat: -1,
       repeatDelay: 1,
     });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-    const handWaveTimeline = gsap.timeline({ repeat: 2 });
-
-    handWaveTimeline
-      .to(handWaveIconRef.current, { rotate: 15, duration: 0.25, ease: "none" })
-      .to(handWaveIconRef.current, { rotate: -15, duration: 0.5, ease: "none" })
-      .to(handWaveIconRef.current, { rotate: 0, duration: 0.25, ease: "none" });
 
     broad_skills.forEach((skill, index) => {
       typewriterRef.current.forEach((el) => {
@@ -100,6 +260,14 @@ function App() {
       );
     });
 
+    // For hand icon waving effect on the hand page
+    const handWaveTimeline = gsap.timeline({ repeat: 2 });
+
+    handWaveTimeline
+      .to(handWaveIconRef.current, { rotate: 15, duration: 0.25, ease: "none" })
+      .to(handWaveIconRef.current, { rotate: -15, duration: 0.5, ease: "none" })
+      .to(handWaveIconRef.current, { rotate: 0, duration: 0.25, ease: "none" });
+
     // Down arrow icon
     gsap.to(downArrowRef.current, {
       y: 10,
@@ -110,7 +278,7 @@ function App() {
     });
 
     return () => {
-      iconsRef.current.forEach((icon) => {
+      socialIconsRef.current.forEach((icon) => {
         gsap.killTweensOf(icon);
       });
 
@@ -122,13 +290,9 @@ function App() {
     };
   }, []);
 
-  const rand = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
-    gsap.to(iconsRef.current[index], {
+    gsap.to(socialIconsRef.current[index], {
       rotate: rand(-20, 20),
       duration: 0.3,
       scale: 1.2,
@@ -137,7 +301,7 @@ function App() {
   };
 
   const handleIconMouseLeave = (index) => {
-    gsap.to(iconsRef.current[index], {
+    gsap.to(socialIconsRef.current[index], {
       opacity: 1,
       rotate: 0,
       duration: 0.3,
@@ -147,7 +311,7 @@ function App() {
   };
 
   return (
-    <div class="min-h-screen overflow-y-hidden" onMouseMove={handleMouseMove}>
+    <div class="min-h-screen overflow-hidden" onMouseMove={handleMouseMove}>
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
@@ -211,7 +375,9 @@ function App() {
               >
                 <Icon
                   key={index}
-                  ref={(uniqueRef) => (iconsRef.current[index] = uniqueRef)}
+                  ref={(uniqueRef) =>
+                    (socialIconsRef.current[index] = uniqueRef)
+                  }
                   onMouseEnter={() => handleIconMouseEnter(index)}
                   onMouseLeave={() => handleIconMouseLeave(index)}
                   class="cursor-pointer"
@@ -227,13 +393,13 @@ function App() {
         />
       </div>
 
-      <section class="bg-teal-50 pt-40 pb-80">
-        <div class="mx-auto max-w-4xl px-4">
-          <h2 class="mb-8 flex items-center justify-center text-3xl font-bold">
-            {" "}
-            <FaRegUser class="mr-2" /> About Me
+      <section class="bg-teal-50 py-60 pb-80">
+        <div class="relative mx-auto flex items-center justify-center px-4 pl-[6rem]">
+          <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
+            {/*<FaRegUser class="mr-2" /> */}
+            <span class="opacity-25">About Me</span>
           </h2>
-          <p class="mb-8 text-center text-lg font-light">
+          <p class="mb-8 max-w-4xl text-center text-lg font-light">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur,
             veniam minus eveniet ipsa excepturi, sit suscipit rerum quis commodi
             repellendus sapiente iusto incidunt corrupti voluptatum nobis
@@ -242,31 +408,25 @@ function App() {
         </div>
       </section>
 
-      <section class="-translate-y-70 pt-20">
-        <div class="mx-auto max-w-5/6 rounded-4xl border-1 border-gray-300 bg-white shadow-lg shadow-gray-300 2xl:max-w-7xl">
+      <section class="-translate-y-70 pt-20" ref={infoBoxRef}>
+        <div
+          class="absolute top-0 left-0 -z-10 max-h-full min-h-full min-w-full"
+          ref={matterContainer}
+        ></div>
+        <div class="pointer-events-none mx-auto max-w-5/6 2xl:max-w-7xl">
           <div class="grid rounded-4xl md:grid-cols-3">
-            <InfoBoxLarge
-              icon={<FaLaptopCode />}
-              title="What I can do"
-              description={"Areas of expertise that I have worked on."}
-              content={broad_skills}
-              corner={"left"}
-            />
-            <InfoBoxLarge
-              icon={<IoCodeSlash />}
-              title="What I know"
-              description={
-                "Programming languages and tools I am proficient in."
-              }
-              content={prog_skills}
-            />
-            <InfoBoxLarge
-              icon={<IoExtensionPuzzleOutline />}
-              title="What my hobbies are"
-              description={"Interests and activities I enjoy outside of work."}
-              content={hobbies}
-              corner={"right"}
-            />
+            {infoBoxes.map((box, index) => (
+              <div>
+                <InfoBoxLarge
+                  icon={box["icon"]}
+                  title={box["title"]}
+                  description={box["description"]}
+                  content={box["content"]}
+                  corner={box["corner"]}
+                  inFocus={false}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -274,7 +434,7 @@ function App() {
       <section class="bg-teal-50 py-40">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
-            {/*<LuGraduationCap class="mr-2" /> */}{" "}
+            {/*<LuGraduationCap class="mr-2" /> */}
             <span class="opacity-25">Education</span>
           </h2>
           <div
