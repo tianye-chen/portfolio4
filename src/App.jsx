@@ -73,6 +73,8 @@ function App() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  console.log(matterContainer.current? matterContainer.current.clientHeight : "")
+
   // Moving gradient background for name
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -197,7 +199,7 @@ function App() {
         ground,
         Matter.Vector.create(
           matterContainer.current.clientWidth / 2,
-          matterContainer.clientHeight + OFFSET + THICC / 2,
+          matterContainer.current.clientHeight + OFFSET + THICC / 2,
         ),
       );
 
@@ -205,7 +207,7 @@ function App() {
         rightWall,
         Matter.Vector.create(
           matterContainer.current.clientWidth + THICC / 2,
-          matterContainer.clientHeight / 2,
+          matterContainer.current.clientHeight / 2,
         ),
       );
     }
@@ -410,7 +412,7 @@ function App() {
 
       <section class="-translate-y-70 pt-20" ref={infoBoxRef}>
         <div
-          class="absolute top-0 left-0 -z-10 max-h-full min-h-full min-w-full"
+          class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
           ref={matterContainer}
         ></div>
         <div class="pointer-events-none mx-auto max-w-5/6 2xl:max-w-7xl">
