@@ -73,8 +73,6 @@ function App() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  console.log(matterContainer.current? matterContainer.current.clientHeight : "")
-
   // Moving gradient background for name
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -94,7 +92,8 @@ function App() {
     matterContainer.current.innerHTML = "";
     const OFFSET = 280;
     const THICC = 60;
-
+    const balls = []
+ 
     const engine = Matter.Engine.create();
     const runner = Matter.Runner.create();
     const world = engine.world;
@@ -168,7 +167,7 @@ function App() {
     }
 
     async function spawnObjs() {
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 30; i++) {
         let circle = Matter.Bodies.circle(
           matterContainer.current.clientWidth / 2 + rand(-5, 5),
           20,
@@ -178,8 +177,9 @@ function App() {
             friction: 0.1,
           },
         );
-
+        
         composite.add(world, circle);
+        balls.push(circle)
         await eepy(50);
       }
     }
@@ -192,8 +192,6 @@ function App() {
     function handleResize(matterContainer) {
       render.canvas.height = matterContainer.current.clientHeight + OFFSET;
       render.canvas.width = matterContainer.current.clientWidth;
-
-      console.log(render.canvas.height, matterContainer.current.clientHeight);
 
       Matter.Body.setPosition(
         ground,
@@ -210,6 +208,19 @@ function App() {
           matterContainer.current.clientHeight / 2,
         ),
       );
+
+      balls.forEach((b) => {
+        if (b.position.y > ground.position.y){
+          Matter.Body.setPosition(
+            b,
+            Matter.Vector.create(
+              b.position.x,
+              b.position.y - ground.position.y - 50
+            )
+          )
+        }
+      })
+
     }
 
     window.addEventListener("resize", () => handleResize(matterContainer));
