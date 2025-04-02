@@ -25,6 +25,10 @@ export const prog_skills = [
   "Firebase",
 ];
 
+export const prog_skills_icons = [
+
+]
+
 export const hobbies = [
   "Video Games",
   "Model Building",

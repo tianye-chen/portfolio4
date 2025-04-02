@@ -442,9 +442,12 @@ function App() {
             ))}
           </div>
         </div>
+        <div class='absolute min-h-full min-w-full bg-[url(/desk.JPEG)] bg-cover -top-25 bottom-0 -z-20 translate-y-70 drop-shadow-2xl'>
+            <br/>
+        </div>
       </section>
 
-      <section class="bg-teal-50 py-40">
+      <section class="bg-teal-50 py-40 pt-80">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
             {/*<LuGraduationCap class="mr-2" /> */}
