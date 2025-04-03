@@ -445,7 +445,10 @@ function App() {
       </section>
 
       <section class="-translate-y-70 pt-20" ref={infoBoxRef}>
-        {prog_skills_icons[0]}
+        
+        <div class='hidden'> 
+          {prog_skills_icons[0]}
+        </div>
 
         <div
           class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
