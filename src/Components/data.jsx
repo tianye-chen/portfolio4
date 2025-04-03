@@ -1,3 +1,5 @@
+import { FaPython } from "react-icons/fa";
+
 export const links = [
     "https://github.com/tianye-chen",
     "https://www.linkedin.com/in/tianyechen/",
@@ -24,10 +26,6 @@ export const prog_skills = [
   "Java",
   "Firebase",
 ];
-
-export const prog_skills_icons = [
-
-]
 
 export const hobbies = [
   "Video Games",

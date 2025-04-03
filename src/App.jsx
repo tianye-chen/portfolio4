@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import Matter from "matter-js";
+import Matter, { Vertices } from "matter-js";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -28,6 +28,7 @@ import {
   experience,
   projects,
 } from "./Components/data";
+import { prog_skills_icons } from "./Components/svgs";
 
 function App() {
   gsap.registerPlugin(ScrollTrigger);
@@ -92,8 +93,10 @@ function App() {
     matterContainer.current.innerHTML = "";
     const OFFSET = 280;
     const THICC = 60;
-    const balls = []
- 
+    const SVG_WIDTH = 100;
+    const SVG_SCALE = 0.1;
+    const balls = [];
+
     const engine = Matter.Engine.create();
     const runner = Matter.Runner.create();
     const world = engine.world;
@@ -177,14 +180,35 @@ function App() {
             friction: 0.1,
           },
         );
-        
+
         composite.add(world, circle);
-        balls.push(circle)
+        balls.push(circle);
         await eepy(50);
       }
     }
 
+    function spawnSVGs() {
+      const paths = document.querySelectorAll("#svg_icon");
+      paths.forEach((path, index) => {
+        let vertices = Matter.Svg.pathToVertices(path, 1);
+        let scaleFactor =
+          (matterContainer.current.clientWidth * SVG_SCALE) / SVG_WIDTH;
+        vertices = Vertices.scale(vertices, scaleFactor, scaleFactor);
+        let svgBody = Matter.Bodies.fromVertices(300, 500, [vertices], {
+          restitution: 0.3,
+          friction: 0.1,
+          render: {
+            fillStyle: "#ff0000",
+            strokeStyle: "#ff0000",
+            lineWidth: 2,
+          },
+        });
+        composite.add(world, svgBody);
+      });
+    }
+
     spawnObjs();
+    spawnSVGs();
 
     Matter.Render.run(render);
     Matter.Runner.run(runner, engine);
@@ -210,17 +234,16 @@ function App() {
       );
 
       balls.forEach((b) => {
-        if (b.position.y > ground.position.y){
+        if (b.position.y > ground.position.y) {
           Matter.Body.setPosition(
             b,
             Matter.Vector.create(
               b.position.x,
-              b.position.y - ground.position.y - 50
-            )
-          )
+              b.position.y - ground.position.y - 50,
+            ),
+          );
         }
-      })
-
+      });
     }
 
     window.addEventListener("resize", () => handleResize(matterContainer));
@@ -422,6 +445,8 @@ function App() {
       </section>
 
       <section class="-translate-y-70 pt-20" ref={infoBoxRef}>
+        {prog_skills_icons[0]}
+
         <div
           class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
           ref={matterContainer}
@@ -442,8 +467,8 @@ function App() {
             ))}
           </div>
         </div>
-        <div class='absolute min-h-full min-w-full bg-[url(/desk.JPEG)] bg-cover -top-25 bottom-0 -z-20 translate-y-70 drop-shadow-2xl'>
-            <br/>
+        <div class="absolute -top-25 bottom-0 -z-20 min-h-full min-w-full translate-y-70 bg-[url(/desk.JPEG)] bg-cover drop-shadow-2xl">
+          <br />
         </div>
       </section>
 
