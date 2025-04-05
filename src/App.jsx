@@ -38,7 +38,7 @@ function App() {
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const [eduInFocus, setEduInFocus] = React.useState(null);
   const socialIconsRef = useRef([]);
-  const skillIconsRef = useRef();
+  const aboutMeIconsRef = useRef([]);
   const handWaveIconRef = useRef([]);
   const downArrowRef = useRef();
   const typewriterRef = useRef([]);
@@ -174,10 +174,13 @@ function App() {
         let circle = Matter.Bodies.circle(
           matterContainer.current.clientWidth / 2 + rand(-5, 5),
           20,
-          30,
+          48,
           {
             restitution: 0.3,
             friction: 0.1,
+            render: {
+              fillStyle: "#ffffff",
+            },
           },
         );
 
@@ -212,6 +215,16 @@ function App() {
 
     Matter.Render.run(render);
     Matter.Runner.run(runner, engine);
+
+    Matter.Events.on(engine, "afterUpdate", function () {
+      aboutMeIconsRef.current.forEach((icon, index) => {
+        gsap.set(icon, {
+          x: balls[index].position.x - 24,
+          y: balls[index].position.y - 104,
+          rotation: balls[index].angle * (180 / Math.PI),
+        });
+      });
+    });
 
     function handleResize(matterContainer) {
       render.canvas.height = matterContainer.current.clientHeight + OFFSET;
@@ -445,10 +458,21 @@ function App() {
       </section>
 
       <section class="-translate-y-70 pt-20" ref={infoBoxRef}>
-        
-        <div class='hidden'> 
-          {prog_skills_icons[0]}
-        </div>
+        <div class="hidden">{prog_skills_icons[0]}</div>
+
+        {prog_skills.map((name, index) => (
+          <div
+            key={index}
+            ref={(uniqueRef) => (aboutMeIconsRef.current[index] = uniqueRef)}
+            class="pointer-events-nones absolute w-[48px] border"
+          >
+            <img
+              src={`./about_me_icons/${name}.png`}
+              draggable="false"
+              class="pointer-events-none block"
+            />
+          </div>
+        ))}
 
         <div
           class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"

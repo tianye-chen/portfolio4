@@ -21,7 +21,7 @@ export const prog_skills = [
   "PyTorch",
   "JavaScript",
   "React",
-  "C#",
+  "C Sharp",
   "Unity",
   "Java",
   "Firebase",
