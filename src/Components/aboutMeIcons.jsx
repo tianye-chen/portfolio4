@@ -8,10 +8,38 @@ export const icons = [
   "Java",
   "Firebase",
   "DeepLearning",
-  "ReinforcementLearning"
+  "ReinforcementLearning",
+  "Data Science",
+  "Web Development",
+  "Software Engineering",
+  "Game Dev",
+  "Video Game",
+  "Gundam",
+  "Cooking",
+  "Gym",
+  "Gardening",
+  "Tinkering",
+  "Travel"
 ];
 
 export const attributions = {
-    "DeepLearning": <a href="https://www.flaticon.com/free-icons/neural-network" title="neural network icons">Neural network icons created by Freepik - Flaticon</a>,
-    "ReinforcementLearning": <a href="https://www.flaticon.com/free-icons/reinforcement-learning" title="reinforcement learning icons">Reinforcement learning icons created by Uniconlabs - Flaticon</a>
+  "Python": <a href="https://www.flaticon.com/free-icons/python" title="python icons">Python icons created by Freepik - Flaticon</a>,
+  "JavaScript": <a href="https://www.flaticon.com/free-icons/javascript" title="javascript icons">Javascript icons created by Freepik - Flaticon</a>,
+  "React": <a href="https://www.flaticon.com/free-icons/react" title="react icons">React icons created by Freepik - Flaticon</a>,
+  "C Sharp": <a href="https://www.flaticon.com/free-icons/c-sharp" title="c sharp icons">C sharp icons created by Freepik - Flaticon</a>,
+  "Unity": <a href="https://www.flaticon.com/free-icons/unity" title="unity icons">Unity icons created by Freepik - Flaticon</a>,
+  "Java": <a href="https://www.flaticon.com/free-icons/java" title="java icons">Java icons created by Freepik - Flaticon</a>, 
+  "DeepLearning": <a href="https://www.flaticon.com/free-icons/neural-network" title="neural network icons">Neural network icons created by Freepik - Flaticon</a>,
+  "ReinforcementLearning": <a href="https://www.flaticon.com/free-icons/reinforcement-learning" title="reinforcement learning icons">Reinforcement learning icons created by Uniconlabs - Flaticon</a>,
+  "Data Science": <a href="https://www.flaticon.com/free-icons/database" title="database icons">Database icons created by Freepik - Flaticon</a>,
+  "Web Development": <a href="https://www.flaticon.com/free-icons/code" title="code icons">Code icons created by Icongeek26 - Flaticon</a>,
+  "Software Engineering": <a href="https://www.flaticon.com/free-icons/software-development" title="software development icons">Software development icons created by Witdhawaty - Flaticon</a>,
+  "Game Dev": <a href="https://www.flaticon.com/free-icons/game-development" title="game development icons">Game development icons created by juicy_fish - Flaticon</a>,
+  "Video Game": <a href="https://www.flaticon.com/free-icons/videogame" title="videogame icons">Videogame icons created by Hilmy Abiyyu A. - Flaticon</a>,
+  "Gundam": <a href="https://www.flaticon.com/free-icons/gundam" title="gundam icons">Gundam icons created by MEDZ - Flaticon</a>,
+  "Cooking": <a href="https://www.flaticon.com/free-icons/cooking" title="cooking icons">Cooking icons created by mangsaabguru - Flaticon</a>,
+  "Gym": <a href="https://www.flaticon.com/free-icons/gym" title="gym icons">Gym icons created by Freepik - Flaticon</a>,
+  "Gardening": <a href="https://www.flaticon.com/free-icons/cultivate" title="cultivate icons">Cultivate icons created by Smashicons - Flaticon</a>,
+  "Tinkering": <a href="https://www.flaticon.com/free-icons/wrench" title="wrench icons">Wrench icons created by Freepik - Flaticon</a>,
+  "Travel": <a href="https://www.flaticon.com/free-icons/travel" title="travel icons">Travel icons created by Freepik - Flaticon</a>
 };

@@ -13,7 +13,7 @@ import {
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { PiHandWavingFill } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
-import { FaLaptopCode } from "react-icons/fa";
+import { FaLaptopCode, FaExternalLinkAlt } from "react-icons/fa";
 import { InfoBoxLarge } from "./Components/InfoBoxLarge";
 import { SkillPill } from "./Components/SkillPill";
 import { EducationBox } from "./Components/EducationBox";
@@ -110,6 +110,7 @@ export const Home = () => {
       },
     });
 
+    // Allows for dragging of MatterJS elements
     const mouse = Matter.Mouse.create(render.canvas);
     const mouseConstraints = Matter.MouseConstraint.create(engine, {
       mouse: mouse,
@@ -121,6 +122,7 @@ export const Home = () => {
       },
     });
 
+    // A collection of the boundaries to prevent MatterJS objects from going out of canvas bounds
     const ground = Matter.Bodies.rectangle(
       matterContainer.current.clientWidth / 2,
       matterContainer.current.clientHeight + OFFSET + THICC / 2,
@@ -128,6 +130,7 @@ export const Home = () => {
       THICC,
       { isStatic: true },
     );
+
     const roof = Matter.Bodies.rectangle(
       matterContainer.current.clientWidth / 2,
       0 - THICC,
@@ -135,6 +138,7 @@ export const Home = () => {
       THICC,
       { isStatic: true },
     );
+
     const leftWall = Matter.Bodies.rectangle(
       0 - THICC / 2,
       matterContainer.current.clientHeight,
@@ -142,6 +146,7 @@ export const Home = () => {
       matterContainer.current.clientHeight * 2,
       { isStatic: true },
     );
+
     const rightWall = Matter.Bodies.rectangle(
       matterContainer.current.clientWidth + THICC / 2,
       matterContainer.current.clientHeight,
@@ -150,6 +155,8 @@ export const Home = () => {
       { isStatic: true },
     );
 
+    // Disabling default MatterJS behaviors for the scrollwheel, allowing for scrolling of the web page
+    // while the mouse is within the canvas
     mouseConstraints.mouse.element.removeEventListener(
       "wheel",
       mouseConstraints.mouse.mousewheel,
@@ -162,12 +169,14 @@ export const Home = () => {
     composite.add(engine.world, mouseConstraints);
     composite.add(world, [roof, ground, leftWall, rightWall]);
 
+    // Helper function for spawnObjs to delay the spawning of each object
     function eepy(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
 
+    // Spawn amount of circles equal the number of personal attributes
     async function spawnObjs() {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < icons.length; i++) {
         let circle = Matter.Bodies.circle(
           matterContainer.current.clientWidth / 2 + rand(-5, 5),
           20,
@@ -175,9 +184,6 @@ export const Home = () => {
           {
             restitution: 0.3,
             friction: 0.1,
-            render: {
-              fillStyle: "#ffffff",
-            },
           },
         );
 
@@ -192,6 +198,7 @@ export const Home = () => {
     Matter.Render.run(render);
     Matter.Runner.run(runner, engine);
 
+    // Renders the icons on top of the MatterJS circles
     Matter.Events.on(engine, "afterUpdate", function () {
       aboutMeIconsRef.current.forEach((icon, index) => {
         gsap.set(icon, {
@@ -199,9 +206,11 @@ export const Home = () => {
           y: balls[index].position.y - 104,
           rotation: balls[index].angle * (180 / Math.PI),
         });
+        icon.classList.remove("hidden");
       });
     });
 
+    // Dynamically adjusts canvas size and boundary locations
     function handleResize(matterContainer) {
       render.canvas.height = matterContainer.current.clientHeight + OFFSET;
       render.canvas.width = matterContainer.current.clientWidth;
@@ -257,7 +266,8 @@ export const Home = () => {
     });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
-    broad_skills.forEach((skill, index) => {
+    // Cycle through each skill in the loop with typing effect
+    broad_skills.forEach((skill) => {
       typewriterRef.current.forEach((el) => {
         typewriterTimeline.to(el, {
           duration: 2,
@@ -267,6 +277,7 @@ export const Home = () => {
       });
     });
 
+    // Animate the blinking cursor effect
     typewriterRef.current.forEach((el) => {
       typewriterCursorTimeline.fromTo(
         el,
@@ -337,6 +348,7 @@ export const Home = () => {
 
   return (
     <div class="min-h-screen overflow-hidden" onMouseMove={handleMouseMove}>
+      {/** Dotted background pattern */}
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
@@ -418,17 +430,23 @@ export const Home = () => {
         />
       </div>
 
+      {/** About Me */}
       <section class="bg-teal-50 py-60 pb-80">
         <div class="relative mx-auto flex items-center justify-center px-4 pl-[6rem]">
           <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
-            {/*<FaRegUser class="mr-2" /> */}
             <span class="opacity-25">About Me</span>
           </h2>
-          <p class="mb-8 max-w-4xl text-center text-lg font-light">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur,
-            veniam minus eveniet ipsa excepturi, sit suscipit rerum quis commodi
-            repellendus sapiente iusto incidunt corrupti voluptatum nobis
-            officia magnam accusantium molestias?
+          <p class="mb-8 max-w-4xl text-left text-3xl font-light">
+            I love exploring new things that will to keep my brain running,
+            whether it is a new hobby or a spontaneous idea that I want to try
+            and code up. I'm always looking for ways to improve myself.
+            <br />
+            <br />
+            It is all about the chill and cozy vibes for me, a calm atmosphere
+            is where I'm at my best.
+            <br />
+            <br />
+            Thanks for stopping by!
           </p>
         </div>
       </section>
@@ -436,11 +454,12 @@ export const Home = () => {
       <section class="-translate-y-70 pt-20">
         <div class="hidden"></div>
 
+        {/** Icons to be rendered on top of MatterJS circles */}
         {icons.map((name, index) => (
           <div
             key={index}
             ref={(uniqueRef) => (aboutMeIconsRef.current[index] = uniqueRef)}
-            class="pointer-events-none absolute w-[48px]"
+            class="pointer-events-none absolute hidden w-[48px]"
           >
             <img
               src={`./about_me_icons/${name}.png`}
@@ -450,12 +469,13 @@ export const Home = () => {
           </div>
         ))}
 
+        {/** Personal attributes */}
         <div
           class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
           ref={matterContainer}
         ></div>
         <div class="pointer-events-none mx-auto max-w-5/6 2xl:max-w-7xl">
-          <div class="grid rounded-4xl md:grid-cols-3">
+          <div class="grid gap-6 rounded-4xl md:grid-cols-3">
             {infoBoxes.map((box, index) => (
               <div>
                 <InfoBoxLarge
@@ -475,10 +495,10 @@ export const Home = () => {
         </div>
       </section>
 
+      {/** Education */}
       <section class="bg-teal-50 py-40 pt-80">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
-            {/*<LuGraduationCap class="mr-2" /> */}
             <span class="opacity-25">Education</span>
           </h2>
           <div
@@ -504,6 +524,7 @@ export const Home = () => {
         </div>
       </section>
 
+      {/** Experience */}
       <section class="py-40">
         <div class="relative mx-auto px-4">
           <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
@@ -535,10 +556,10 @@ export const Home = () => {
         </div>
       </section>
 
+      {/** Projects */}
       <section class="bg-teal-50 py-40">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            {/*<FaLaptopCode class="mr-2" />*/}
             <span class="opacity-25">Projects</span>
           </h2>
 
@@ -549,6 +570,27 @@ export const Home = () => {
                   <p class="text-lg font-semibold">
                     {proj["title"]}{" "}
                     <span class="text-sm text-gray-500">{proj["year"]}</span>
+                    <div class="flex gap-2">
+                      <a
+                        href={proj["repo"]}
+                        target="_blank"
+                        class="transition-all ease-in-out hover:text-emerald-400"
+                      >
+                        {" "}
+                        <FiGithub />
+                      </a>
+                      {proj["demo"] ? (
+                        <a
+                          href={proj["demo"]}
+                          target="_blank"
+                          class="transition-all ease-in-out hover:text-emerald-400"
+                        >
+                          <FaExternalLinkAlt />
+                        </a>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </p>
                   <div>
                     {proj["attributes"].map((att, attIndex) => (
@@ -568,6 +610,7 @@ export const Home = () => {
         </div>
       </section>
 
+      {/** Credits to icons */}
       <footer>
         <p class="bg-teal-50 text-xs">
           <Link to="/portfolio4/attributions" target="_blank">

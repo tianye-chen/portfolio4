@@ -97,7 +97,7 @@ export const experience = [
 export const projects = [
   {
     title: "Portfolio Website v4 (This Website)",
-    description: "A personal portfolio website showcasing my skills and projects.",
+    description: "A personal portfolio website showcasing myself.",
     year: "2025",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/portfolio4",
@@ -107,7 +107,9 @@ export const projects = [
       "React",
       "TailwindCSS",
       "GSAP",
-      "Vite"
+      "Vite",
+      "MatterJS",
+      "Web Development"
     ]
   },
   {
@@ -154,7 +156,7 @@ export const projects = [
     year: "2023",
     attributes: ["Team", "Leader"],
     repo: "https://github.com/tianye-chen/ProjectAether",
-    demo: "N/A",
+    demo: "",
     tech: [
       "C#",
       "Unity",
@@ -166,7 +168,7 @@ export const projects = [
   },
   {
     title: "MusChart",
-    description: "A full web application that allows users to search, rate and review songs and supports user authentication.",
+    description: "A fullstack web application that allows users to search, rate and review songs and supports user authentication.",
     year: "2023",
     attributes: ["Team", "Leader"],
     repo: "https://github.com/tianye-chen/music-app",
@@ -183,11 +185,12 @@ export const projects = [
       "Agile",
       "Scrum",
       "CI/CD",
+      "Web Development",
     ]
   },
   {
     title: "Worldreaver",
-    description: "A 2D bullet hell game developed in Unity with two intricate boss fights",
+    description: "A 2D bullet hell game developed in Unity with two intricate boss battles.",
     year: "2021",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/worldreaver-unity-game-project",
