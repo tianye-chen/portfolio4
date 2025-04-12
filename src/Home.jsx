@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import Matter, { Vertices } from "matter-js";
+import Matter from "matter-js";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -35,12 +35,15 @@ export const Home = () => {
 
   const [gradPos, setGradPos] = React.useState({ x: 50, y: 50 });
   const [eduInFocus, setEduInFocus] = React.useState(null);
+  const firstNameBGLargeRef = useRef()
+  const lastNameBGLargeRef = useRef()
+  const nameCenterSectionRef = useRef([])
+  const socialsRef = useRef([])
   const socialIconsRef = useRef([]);
   const aboutMeIconsRef = useRef([]);
   const handWaveIconRef = useRef([]);
   const downArrowRef = useRef();
   const typewriterRef = useRef([]);
-  const testRef = useRef();
   const matterContainer = useRef();
 
   const infoBoxes = [
@@ -259,6 +262,28 @@ export const Home = () => {
       gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
     });
 
+    gsap.set(firstNameBGLargeRef.current, {opacity: 0, translateX: -1000})
+    gsap.to(firstNameBGLargeRef.current, {opacity: 0.05, translateX: 0, duration: 4, ease: "power1.inOut"})
+
+    gsap.set(lastNameBGLargeRef.current, {opacity:0, translateX: 1000})
+    gsap.to(lastNameBGLargeRef.current, {opacity: 0.05, translateX: 0, duration: 4, ease: "power1.inOut"})
+
+    nameCenterSectionRef.current.forEach((item) => {
+      gsap.set(item, {opacity: 0, translateY: -100})
+    })
+
+    nameCenterSectionRef.current.forEach((item) => {
+      gsap.to(item, {opacity: 1, translateY: 0, duration:1.5, ease:'power1.inOut'})
+    })
+
+    socialsRef.current.forEach((item) => {
+      gsap.set(item, {opacity: 0, translateY: 100})
+    })
+
+    socialsRef.current.forEach((item) => {
+      gsap.to(item, {opacity: 1, translateY: 0, duration:1.5, ease:'power1.inOut'})
+    })
+
     // For text loop on the name page
     const typewriterCursorTimeline = gsap.timeline({
       repeat: -1,
@@ -346,21 +371,25 @@ export const Home = () => {
     });
   };
 
+  const refPush = (el, ref) => {
+    ref.current.push(el)
+  }
+
   return (
     <div class="min-h-screen overflow-hidden" onMouseMove={handleMouseMove}>
       {/** Dotted background pattern */}
       <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
-        <div class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]">
+        <div class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]" ref={firstNameBGLargeRef}>
           TIANYE
         </div>
-        <div class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]">
+        <div class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]" ref={lastNameBGLargeRef}>
           CHEN
         </div>
 
         <div class="">
-          <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start">
+          <h1 class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             {" "}
             <PiHandWavingFill class="mr-2" ref={handWaveIconRef} /> Hello,
             I'm{" "}
@@ -370,14 +399,15 @@ export const Home = () => {
             style={{
               backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
             }}
+            ref={(el) => (refPush(el, nameCenterSectionRef))}
           >
             Tianye Chen
           </h1>
-          <p class="mb-4 text-xl font-bold text-emerald-500">
+          <p class="mb-4 text-xl font-bold text-emerald-500" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             Master's Graduate in Computer Science
           </p>
 
-          <p class="absolute hidden text-center text-4xl font-light md:block">
+          <p class="absolute hidden text-center text-4xl font-light md:block" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             Specializing in{" "}
             <span
               class="border-r-2 border-emerald-500 pr-1"
@@ -387,7 +417,7 @@ export const Home = () => {
             </span>
           </p>
 
-          <div class="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden">
+          <div class="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             <p> Specializing in </p>
             <span
               class="border-r-2 border-emerald-500 pr-1"
@@ -395,14 +425,14 @@ export const Home = () => {
             ></span>
           </div>
         </div>
-        <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500">
-          <h1 class="font-lexend text-2xl" ref={testRef}>
+        <div class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500" ref={(el) => (refPush(el, socialsRef))}>
+          <h1 class="font-lexend text-2xl">
             Let's{" "}
             <span class="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
               <span class="relative mr-1 text-white">Connect</span>
             </span>
           </h1>
-          <div class="flex gap-6 text-3xl">
+          <div class="flex gap-6 text-3xl" ref={(el) => (refPush(el, socialsRef))}>
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
               <a
                 key={index}
