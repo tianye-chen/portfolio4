@@ -6,8 +6,8 @@ export const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/portfolio4" element={<Home />} />
-        <Route path="/portfolio4/attributions" element={<Attributions />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/attributions" element={<Attributions />} />
       </Routes>
     </Router>
   );
