@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: 'https://tianyechen.net/portfolio4/',
+  base: 'https://tianye-chen.github.io/portfolio4/',
   plugins: [
     react(), 
     tailwindcss()
