@@ -1,4 +1,5 @@
 import { FaPython } from "react-icons/fa";
+import { attributions } from "./aboutMeIcons";
 
 export const links = [
     "https://github.com/tianye-chen",
@@ -110,6 +111,22 @@ export const projects = [
       "Vite",
       "MatterJS",
       "Web Development"
+    ]
+  },
+  {
+    title: "osu!Mania Deep Reinforcement Learning Model",
+    description: "A trained Deep RL model to play the rhythm game osu!Mania with data inputs via computer vision",
+    year: "2025",
+    attributes: ["Team", "Member"],
+    repo: "https://github.com/tianye-chen/Osu-mania-RL-agent",
+    demo: "",
+    tech: [
+      "Python",
+      "PyTorch",
+      "Roboflow",
+      "Deep Learning",
+      "Reinforcement Learning",
+      "Computer Vision",
     ]
   },
   {

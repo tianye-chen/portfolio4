@@ -348,14 +348,24 @@ export const Home = () => {
     });
 
     return () => {
-      socialIconsRef.current.forEach((icon) => {
-        gsap.killTweensOf(icon);
+      socialIconsRef.current.forEach((item) => {
+        gsap.killTweensOf(item);
       });
 
-      typewriterRef.current.forEach((tw) => {
-        gsap.killTweensOf(tw);
+      typewriterRef.current.forEach((item) => {
+        gsap.killTweensOf(item);
       });
 
+      nameCenterSectionRef.current.forEach((item) => {
+        gsap.killTweensOf(item)
+      })
+
+      socialsRef.current.forEach((item) => {
+        gsap.killTweensOf(item)
+      })
+      
+      gsap.killTweensOf(firstNameBGLargeRef.current)
+      gsap.killTweensOf(lastNameBGLargeRef.current)
       gsap.killTweensOf(downArrowRef.current);
     };
   }, []);
@@ -616,7 +626,7 @@ export const Home = () => {
                         class="transition-all ease-in-out hover:text-emerald-400"
                       >
                         {" "}
-                        <FiGithub />
+                        <FiGithub title="Repository"/>
                       </a>
                       {proj["demo"] ? (
                         <a
@@ -624,7 +634,7 @@ export const Home = () => {
                           target="_blank"
                           class="transition-all ease-in-out hover:text-emerald-400"
                         >
-                          <FaExternalLinkAlt />
+                          <FaExternalLinkAlt title="Demo"/>
                         </a>
                       ) : (
                         ""
