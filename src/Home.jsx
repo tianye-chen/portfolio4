@@ -619,7 +619,7 @@ export const Home = () => {
                   <p class="text-lg font-semibold">
                     {proj["title"]}{" "}
                     <span class="text-sm text-gray-500">{proj["year"]}</span>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 py-2">
                       <a
                         href={proj["repo"]}
                         target="_blank"

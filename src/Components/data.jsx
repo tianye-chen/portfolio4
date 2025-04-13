@@ -97,7 +97,7 @@ export const experience = [
 
 export const projects = [
   {
-    title: "Portfolio Website v4 (This Website)",
+    title: "👤 Portfolio Website v4 (This Website)",
     description: "A personal portfolio website showcasing myself.",
     year: "2025",
     attributes: ["Solo"],
@@ -114,7 +114,7 @@ export const projects = [
     ]
   },
   {
-    title: "osu!Mania Deep Reinforcement Learning Model",
+    title: "🤖 osu!Mania Deep Reinforcement Learning Model",
     description: "A trained Deep RL model to play the rhythm game osu!Mania with data inputs via computer vision",
     year: "2025",
     attributes: ["Team", "Member"],
@@ -130,7 +130,7 @@ export const projects = [
     ]
   },
   {
-    title: "CelebA Attributes Classifier",
+    title: "😎 CelebA Attributes Classifier",
     description: "A deep learning model hosted on Firebase that predicts facial features given an image of a face.",
     year: "2024",
     attributes: ["Solo"],
@@ -148,7 +148,7 @@ export const projects = [
     ]
   },
   {
-    title: "Career Predictions using Machine Learning",
+    title: "💼 Career Predictions using Machine Learning",
     description: "Using industry data and multiple machine learning models to predict career related attributes such as salary, similar jobs, experience level required, etc.",
     year: "2023",
     attributes: ["Team", "Member"],
@@ -168,7 +168,7 @@ export const projects = [
     ]
   },
   {
-    title: "Project Aether",
+    title: "⚔️ Project Aether",
     description: "A 2D rogue-like infinite dungeon crawler developed in Unity with procedurally generated levels and enemies.",
     year: "2023",
     attributes: ["Team", "Leader"],
@@ -184,7 +184,7 @@ export const projects = [
     ]
   },
   {
-    title: "MusChart",
+    title: "🎵 MusChart",
     description: "A fullstack web application that allows users to search, rate and review songs and supports user authentication.",
     year: "2023",
     attributes: ["Team", "Leader"],
@@ -206,7 +206,7 @@ export const projects = [
     ]
   },
   {
-    title: "Worldreaver",
+    title: "🌌 Worldreaver",
     description: "A 2D bullet hell game developed in Unity with two intricate boss battles.",
     year: "2021",
     attributes: ["Solo"],
