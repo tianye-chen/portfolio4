@@ -45,6 +45,7 @@ export const Home = () => {
   const downArrowRef = useRef();
   const typewriterRef = useRef([]);
   const matterContainer = useRef();
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   const infoBoxes = [
     {
@@ -93,8 +94,6 @@ export const Home = () => {
     matterContainer.current.innerHTML = "";
     const OFFSET = 280;
     const THICC = 100;
-    const SVG_WIDTH = 100;
-    const SVG_SCALE = 0.1;
     const balls = [];
 
     const engine = Matter.Engine.create();
@@ -146,7 +145,7 @@ export const Home = () => {
       0 - THICC / 2,
       matterContainer.current.clientHeight,
       THICC,
-      matterContainer.current.clientHeight * 2,
+      matterContainer.current.clientHeight * 4,
       { isStatic: true },
     );
 
@@ -154,7 +153,7 @@ export const Home = () => {
       matterContainer.current.clientWidth + THICC / 2,
       matterContainer.current.clientHeight,
       THICC,
-      matterContainer.current.clientHeight * 2,
+      matterContainer.current.clientHeight * 4,
       { isStatic: true },
     );
 
@@ -168,6 +167,10 @@ export const Home = () => {
       "DOMMouseScroll",
       mouseConstraints.mouse.mousewheel,
     );
+
+    if (isMobile){
+      mouseConstraints.mouse.element = null
+    }
 
     composite.add(engine.world, mouseConstraints);
     composite.add(world, [roof, ground, leftWall, rightWall]);
@@ -240,7 +243,7 @@ export const Home = () => {
             b,
             Matter.Vector.create(
               b.position.x,
-              b.position.y - ground.position.y - 50,
+              b.position.y - ground.position.y - 100,
             ),
           );
         }
@@ -269,11 +272,7 @@ export const Home = () => {
     gsap.to(lastNameBGLargeRef.current, {opacity: 0.05, translateX: 0, duration: 4, ease: "power1.inOut"})
 
     nameCenterSectionRef.current.forEach((item) => {
-      gsap.set(item, {opacity: 0, translateY: -100})
-    })
-
-    nameCenterSectionRef.current.forEach((item) => {
-      gsap.to(item, {opacity: 1, translateY: 0, duration:1.5, ease:'power1.inOut'})
+      gsap.set(item, {opacity: 0, translateY: -30})
     })
 
     socialsRef.current.forEach((item) => {
@@ -282,6 +281,16 @@ export const Home = () => {
 
     socialsRef.current.forEach((item) => {
       gsap.to(item, {opacity: 1, translateY: 0, duration:1.5, ease:'power1.inOut'})
+    })
+
+    const startUpTimeLine = gsap.timeline({})
+    
+    nameCenterSectionRef.current.forEach((item, index) => {
+      startUpTimeLine.to(item, {
+        opacity: 1,
+        translateY: 0,
+        duration: 1.5,
+      }, 0.5 * index)
     })
 
     // For text loop on the name page
@@ -462,18 +471,18 @@ export const Home = () => {
 
       {/** About Me */}
       <section class="bg-teal-50 py-60 pb-80">
-        <div class="relative mx-auto flex items-center justify-center px-4 pl-[6rem]">
+        <div class="relative mx-auto flex items-center justify-center px-[6rem]">
           <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
             <span class="opacity-25">About Me</span>
           </h2>
-          <p class="mb-8 max-w-4xl text-left text-3xl font-light">
+          <p class="mb-8 max-w-4xl text-center md:text-left text-3xl font-light">
             I love exploring new things that will to keep my brain running,
             whether it is a new hobby or a spontaneous idea that I want to try
             and code up. I'm always looking for ways to improve myself.
             <br />
             <br />
-            It is all about the chill and cozy vibes for me, a calm atmosphere
-            is where I'm at my best.
+            I enjoy a calm and cozy atmosphere,
+            it is where I work best.
             <br />
             <br />
             Thanks for stopping by!
