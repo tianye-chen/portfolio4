@@ -574,7 +574,7 @@ export const Home = () => {
       </section>
 
       {/** Experience */}
-      <section class="py-40">
+      <section class="py-40 hidden">
         <div class="relative mx-auto px-4">
           <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
             {/*<LuBriefcase class="mr-2" />*/}
