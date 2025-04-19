@@ -662,7 +662,7 @@ export const Home = () => {
       {/** Credits to icons */}
       <footer>
         <p class="bg-teal-50 text-xs">
-          <Link to="/portfolio4/attributions" target="_blank">
+          <Link to="/attributions" target="_blank">
             Attributions
           </Link>
         </p>
