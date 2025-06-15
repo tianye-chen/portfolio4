@@ -401,7 +401,7 @@ export const Home = () => {
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
         <div class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]" ref={firstNameBGLargeRef}>
-          TIANYE
+          DANIEL
         </div>
         <div class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]" ref={lastNameBGLargeRef}>
           CHEN
@@ -420,7 +420,7 @@ export const Home = () => {
             }}
             ref={(el) => (refPush(el, nameCenterSectionRef))}
           >
-            Tianye Chen
+            Daniel (Tianye) Chen
           </h1>
           <p class="mb-4 text-xl font-bold text-emerald-500" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             Master's Graduate in Computer Science
