@@ -420,7 +420,7 @@ export const Home = () => {
             }}
             ref={(el) => (refPush(el, nameCenterSectionRef))}
           >
-            Daniel (Tianye) Chen
+            Daniel Chen
           </h1>
           <p class="mb-4 text-xl font-bold text-emerald-500" ref={(el) => (refPush(el, nameCenterSectionRef))}>
             Master's Graduate in Computer Science
