@@ -168,8 +168,11 @@ export const Hero = () => {
 
   // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
+    const min = -20;
+    const max = 20;
+    const randRotation = Math.floor(Math.random() * (max - min + 1)) + min;
     gsap.to(socialIconsRef.current[index], {
-      rotate: rand(-20, 20),
+      rotate: randRotation,
       duration: 0.3,
       scale: 1.2,
       ease: "power2.out",
