@@ -25,8 +25,8 @@ import {
   education,
   experience,
   projects,
-} from "./Components/data";
-import { icons } from "./Components/aboutMeIcons";
+} from "./Components/Data/data";
+import { icons } from "./Components/Data/aboutMeIcons";
 
 export const Home = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -486,25 +486,15 @@ export const Home = () => {
             <span class="opacity-25">About Me</span>
           </h2>
           <p class="mb-8 max-w-4xl text-center md:text-left text-3xl font-light">
-            I love exploring new things that will to keep my brain running,
-            whether it is a new hobby or a spontaneous idea that I want to try
-            and code up. I'm always looking for ways to improve myself.
-            <br />
-            <br />
-            I enjoy a calm and cozy atmosphere,
-            it is where I work best.
-            <br />
-            <br />
-            Thanks for stopping by!
+            Hey there, thanks for stopping by! Here you can find out a bit more about me and what I've been working on.
           </p>
         </div>
       </section>
 
-      <section class="-translate-y-70 pt-20">
-        <div class="hidden"></div>
+      <section class="py-20 -translate-y-40 -my-40">
 
         {/** Icons to be rendered on top of MatterJS circles */}
-        {icons.map((name, index) => (
+        {/**icons.map((name, index) => (
           <div
             key={index}
             ref={(uniqueRef) => (aboutMeIconsRef.current[index] = uniqueRef)}
@@ -516,11 +506,11 @@ export const Home = () => {
               class="pointer-events-none block"
             />
           </div>
-        ))}
+        ))**/} 
 
         {/** Personal attributes */}
         <div
-          class="absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
+          class="hidden absolute top-0 left-0 -z-10 max-h-full min-h-full max-w-full min-w-full"
           ref={matterContainer}
         ></div>
         <div class="pointer-events-none mx-auto max-w-5/6 2xl:max-w-7xl">
@@ -539,7 +529,7 @@ export const Home = () => {
             ))}
           </div>
         </div>
-        <div class="absolute -top-25 bottom-0 -z-20 min-h-full min-w-full translate-y-70 bg-[url(/desk.JPEG)] bg-cover drop-shadow-2xl">
+        <div class="hidden absolute -top-25 bottom-0 -z-20 min-h-full min-w-full translate-y-70 bg-cover drop-shadow-2xl">
           <br />
         </div>
       </section>
@@ -574,7 +564,7 @@ export const Home = () => {
       </section>
 
       {/** Experience */}
-      <section class="py-40 hidden">
+      <section class="py-40">
         <div class="relative mx-auto px-4">
           <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
             {/*<LuBriefcase class="mr-2" />*/}

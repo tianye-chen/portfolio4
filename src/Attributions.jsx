@@ -1,5 +1,4 @@
-import React from "react";
-import { icons, attributions } from "./Components/aboutMeIcons";
+import { icons, attributions } from "./Components/Data/aboutMeIcons";
 
 export const Attributions = () => {
   return (

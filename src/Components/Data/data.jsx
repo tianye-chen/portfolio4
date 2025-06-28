@@ -75,6 +75,20 @@ export const education = [
 
 export const experience = [
   {
+    title: "Web Developer",
+    company: "United Chinese Association of Brooklyn",
+    duration: "2025 - Present",
+    description: "Sole web developer for a non-profit organization",
+    skills: [
+      "JavaScript",
+      "Figma",
+      "Wix",
+      "Velo.js",
+      "CMS",
+      "UI/UX Design",
+    ]
+  },
+  {
     title: "Fellow",
     company: "CUNY Tech Prep",
     duration: "2022 - 2023",
@@ -114,8 +128,8 @@ export const projects = [
     ]
   },
   {
-    title: "🤖 osu!Mania Deep Reinforcement Learning Model",
-    description: "A trained Deep RL model to play the rhythm game osu!Mania with data inputs via computer vision",
+    title: "🤖 osu!Mania Auto-playing agent via Computer Vision",
+    description: "A trained deep learning model to play the rhythm game osu!Mania with data inputs via computer vision",
     year: "2025",
     attributes: ["Team", "Member"],
     repo: "https://github.com/tianye-chen/Osu-mania-RL-agent",
@@ -124,8 +138,6 @@ export const projects = [
       "Python",
       "PyTorch",
       "Roboflow",
-      "Deep Learning",
-      "Reinforcement Learning",
       "Computer Vision",
     ]
   },
