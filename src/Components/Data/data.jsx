@@ -1,6 +1,3 @@
-import { FaPython } from "react-icons/fa";
-import { attributions } from "./aboutMeIcons";
-
 export const links = [
     "https://github.com/tianye-chen",
     "https://www.linkedin.com/in/tianyechen/",
