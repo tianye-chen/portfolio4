@@ -1,7 +1,7 @@
 export const links = [
     "https://github.com/tianye-chen",
     "https://www.linkedin.com/in/tianyechen/",
-    "mailto:tianyechen1@gmail.com",
+    "mailto:contact@tianyechen.net",
 ];
 
 export const broad_skills = [
