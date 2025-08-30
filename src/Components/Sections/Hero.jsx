@@ -199,7 +199,7 @@ export const Hero = () => {
           class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]"
           ref={firstNameBGLargeRef}
         >
-          DANIEL
+          TIANYE
         </div>
         <div
           class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]"
@@ -224,7 +224,7 @@ export const Hero = () => {
             }}
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
-            Daniel Chen
+            Tianye Chen
           </h1>
           <p
             class="mb-4 text-xl font-bold text-emerald-500"
