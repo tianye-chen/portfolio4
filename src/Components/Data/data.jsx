@@ -9,7 +9,7 @@ export const broad_skills = [
   "Deep Learning",
   "Reinforcement Learning",
   "Data Science",
-  "Web Development",
+  "Fullstack Web Development",
   "Software Engineering",
   "Game Design & Development",
 ];
@@ -75,14 +75,19 @@ export const experience = [
     title: "Web Developer",
     company: "United Chinese Association of Brooklyn",
     duration: "2025 - Present",
-    description: "Sole web developer for a non-profit organization",
+    description: "Web developer, designer, and technology support for a non-profit organization",
     skills: [
       "JavaScript",
       "Figma",
       "Wix",
       "Velo.js",
       "CMS",
+      "DNS Management",
       "UI/UX Design",
+      "Web Development",
+      "Web Content Automation",
+      "Social Media Management",
+      "General Social Work",
     ]
   },
   {
@@ -107,6 +112,54 @@ export const experience = [
 ];
 
 export const projects = [
+  {
+    title: "🧰 Web AI Tool Suite",
+    description: "A suite of freemium web AI tools including, video summarization, text summarization, and worksheet generation.",
+    year: "2026 In Progress",
+    attributes: ["Solo"],
+    tech: [
+      "Python",
+      "Flask",
+      "JavaScript",
+      "Vue.js",
+      "TailwindCSS",
+      "Gemini API",
+      "AWS Lambda",
+      "AWS API Gateway",
+      "AWS CodeBuild",
+      "Amazon SES",
+      "MongoDB",
+    ]
+  },
+  {
+    title: "🎵 Minecraft Datapack Creator for Custom Music Discs",
+    description: "A web application that allows users to create custom music discs for Minecraft using their own audio files.",
+    year: "2025",
+    attributes: ["Solo"],
+    repo: "https://github.com/tianye-chen/disc-datapack-maker",
+    tech: [
+      "JavaScript",
+      "React",
+      "TailwindCSS",
+      "FFmpeg",
+    ]
+  },
+  {
+    title: "Website for United Chinese Association of Brooklyn",
+    description: "A production level website for a non-profit organization serving the local community.",
+    year: "Ongoing",
+    attributes: ["Professional"],
+    demo: "https://ucabrooklyn.org/",
+    tech: [
+      "JavaScript",
+      "Wix",
+      "Velo.js",
+      "CMS",
+      "DNS Management",
+      "UI/UX Design",
+      "Translations",
+    ]
+  },
   {
     title: "👤 Portfolio Website v4 (This Website)",
     description: "A personal portfolio website showcasing myself.",

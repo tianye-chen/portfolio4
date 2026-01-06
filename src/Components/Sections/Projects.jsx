@@ -11,7 +11,7 @@ export const Projects = () => {
       <section class="bg-teal-50 py-40">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            <span class="opacity-25">Projects</span>
+            <span class="opacity-8">Projects</span>
           </h2>
 
           <div class="flex min-w-screen items-center justify-center">
@@ -22,15 +22,17 @@ export const Projects = () => {
                     {proj["title"]}{" "}
                     <span class="text-sm text-gray-500">{proj["year"]}</span>
                     <div class="flex gap-2 py-2">
-                      <a
-                        href={proj["repo"]}
-                        target="_blank"
-                        class="transition-all ease-in-out hover:text-emerald-400"
-                      >
-                        {" "}
-                        <FiGithub title="Repository" />
-                      </a>
-                      {proj["demo"] ? (
+                      {proj["repo"] && (
+                        <a
+                          href={proj["repo"]}
+                          target="_blank"
+                          class="transition-all ease-in-out hover:text-emerald-400"
+                        >
+                          {" "}
+                          <FiGithub title="Repository" />
+                        </a>
+                      )}
+                      {proj["demo"] && (
                         <a
                           href={proj["demo"]}
                           target="_blank"
@@ -38,8 +40,6 @@ export const Projects = () => {
                         >
                           <FaExternalLinkAlt title="Demo" />
                         </a>
-                      ) : (
-                        ""
                       )}
                     </div>
                   </p>

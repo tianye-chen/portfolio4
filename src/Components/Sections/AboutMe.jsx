@@ -35,7 +35,7 @@ export const AboutMe = () => {
       <section class="bg-teal-50 py-60 pb-80">
         <div class="relative mx-auto flex items-center justify-center px-[6rem]">
           <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
-            <span class="opacity-25">About Me</span>
+            <span class="opacity-8">About Me</span>
           </h2>
           <p class="mb-8 max-w-4xl text-center text-3xl font-light md:text-left">
             Hey there, thanks for stopping by! Here you can find out a bit more

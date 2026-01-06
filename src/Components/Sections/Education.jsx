@@ -16,7 +16,7 @@ export const Education = () => {
       <section class="bg-teal-50 py-40 pt-80">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
-            <span class="opacity-25">Education</span>
+            <span class="opacity-8">Education</span>
           </h2>
           <div
             class={`relative flex min-h-[80vh] flex-col gap-4 overflow-hidden rounded-4xl md:flex-row md:gap-0`}
