@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Hero } from "./Components/Sections/Hero";
 import { AboutMe } from "./Components/Sections/AboutMe";
+import { Skills } from "./Components/Sections/Skills";
 import { Education } from "./Components/Sections/Education";
 import { Experience } from "./Components/Sections/Experience";
 import { Projects } from "./Components/Sections/Projects";
@@ -10,18 +11,21 @@ export const Home = () => {
     <div class="min-h-screen overflow-hidden">
       <Hero />
       <AboutMe />
-      <Experience />
+      <Skills />
+      {false && <Experience />}
       <Projects />
-      <Education />
+      {false && <Education />}
 
       {/** Credits to icons */}
-      <footer>
-        <p class="bg-teal-50 text-xs">
-          <Link to="/attributions" target="_blank">
-            Attributions
-          </Link>
-        </p>
-      </footer>
+      {false && (
+        <footer>
+          <p class="bg-teal-50 text-xs">
+            <Link to="/attributions" target="_blank">
+              Attributions
+            </Link>
+          </p>
+        </footer>
+      )}
     </div>
   );
 };

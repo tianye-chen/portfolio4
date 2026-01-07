@@ -1,7 +1,7 @@
 export const links = [
     "https://github.com/tianye-chen",
     "https://www.linkedin.com/in/tianyechen/",
-    "mailto:contact@tianyechen.net",
+    "mailto:contact@danielch.net",
 ];
 
 export const broad_skills = [
@@ -14,16 +14,73 @@ export const broad_skills = [
   "Game Design & Development",
 ];
 
-export const prog_skills = [
+export const prog_langs = [
   "Python",
-  "PyTorch",
   "JavaScript",
-  "React",
-  "C Sharp",
-  "Unity",
+  "C#",
   "Java",
-  "Firebase",
+  "SQL",
+  "Lua",
 ];
+
+export const front_dev = [
+  "React",
+  "TailwindCSS",
+  "JavaScript",
+  "Vue.js",
+  "Velo.js",
+  "Bootstrap",
+  "HTML5",
+  "CSS3",
+  "Figma",
+  "UI/UX Design",
+]
+
+export const back_dev = [
+  "Node.js",
+  "Express",
+  "Flask",
+  "PostgreSQL",
+  "MongoDB",
+  "JSON",
+  "RESTful APIs",
+  "CMS",
+]
+
+export const cloud_devops = [
+  "AWS Lambda",
+  "AWS API Gateway",
+  "AWS CodeBuild",
+  "Amazon SES",
+  "Google Cloud",
+  "Oracle Cloud Infrastructure",
+  "Firebase",
+  "CI/CD",
+  "Git",
+]
+
+export const game_dev = [
+  "Unity",
+  "Roblox Studio",
+  "2D Graphics",
+  "Procedural Generation",
+  "Game Design",
+  "Game Development",
+]
+
+export const ai_data_dev = [
+  "TensorFlow",
+  "PyTorch",
+  "Scikit-Learn",
+  "Pandas",
+  "NumPy",
+  "Matplotlib",
+  "Deep Learning",
+  "Machine Learning",
+  "Reinforcement Learning",
+  "LLMs",
+  "Gemini API",
+]
 
 export const hobbies = [
   "Video Games",
@@ -114,7 +171,7 @@ export const experience = [
 export const projects = [
   {
     title: "🧰 Web AI Tool Suite",
-    description: "A suite of freemium web AI tools including, video summarization, text summarization, and worksheet generation.",
+    description: "A suite of freemium web AI tools targeted towards educators. Including video summarization, text summarization, and worksheet generation.",
     year: "2026 In Progress",
     attributes: ["Solo"],
     tech: [
@@ -137,6 +194,7 @@ export const projects = [
     year: "2025",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/disc-datapack-maker",
+    demo: "mcdiscs.danielch.net",
     tech: [
       "JavaScript",
       "React",

@@ -1,9 +1,11 @@
 import React from "react";
 
-export const SkillPill = ({ skill }) => {
+export const SkillPill = ({ skill, slateBase }) => {
   return (
-    <div class="flex justify-center overflow-hidden rounded-full bg-emerald-500 px-2 pb-0.5 whitespace-nowrap text-white outline-emerald-500 transition-all ease-in-out hover:bg-white hover:text-emerald-500 hover:outline-1">
-      {skill}
+    <div
+      class={`text-md flex justify-center overflow-hidden rounded-full px-2.5 py-0.5 font-medium whitespace-nowrap outline-emerald-500 transition-all ease-in-out hover:bg-white hover:text-emerald-500 hover:outline-1 ${slateBase ? "bg-slate-100 text-black" : "bg-emerald-500 text-white"}`}
+    >
+      <div class="pointer-events-none">{skill}</div>
     </div>
   );
 };

@@ -196,13 +196,13 @@ export const Hero = () => {
 
       <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
         <div
-          class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]"
+          class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
           ref={firstNameBGLargeRef}
         >
           DANIEL
         </div>
         <div
-          class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[26rem]"
+          class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
           ref={lastNameBGLargeRef}
         >
           CHEN
@@ -220,7 +220,7 @@ export const Hero = () => {
           <h1
             class={`font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent md:text-6xl`}
             style={{
-              backgroundImage: `radial-gradient(circle at ${gradPos.x}% ${gradPos.y}%, #a855f7, #10b981, #0ea5e9)`,
+              backgroundImage: `linear-gradient(90deg, #4DE3B6 0%, #00BC7D 10%, #009999 100%)`,
             }}
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
@@ -234,10 +234,10 @@ export const Hero = () => {
           </p>
 
           <p
-            class="absolute hidden text-center text-4xl font-light md:block"
+            class="absolute hidden text-center text-3xl font-light md:block"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
-            Specializing in{" "}
+            Creating Solutions with{" "}
             <span
               class="border-r-2 border-emerald-500 pr-1"
               ref={(el) => (typewriterRef.current[0] = el)}
@@ -250,7 +250,7 @@ export const Hero = () => {
             class="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
-            <p> Specializing in </p>
+            <p> Creating Solutions with </p>
             <span
               class="border-r-2 border-emerald-500 pr-1"
               ref={(el) => (typewriterRef.current[1] = el)}
