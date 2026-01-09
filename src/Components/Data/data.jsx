@@ -194,7 +194,7 @@ export const projects = [
     year: "2025",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/disc-datapack-maker",
-    demo: "mcdiscs.danielch.net",
+    demo: "https://mcdiscs.danielch.net/",
     tech: [
       "JavaScript",
       "React",
