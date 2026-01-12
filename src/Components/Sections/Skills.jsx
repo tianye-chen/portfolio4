@@ -1,12 +1,20 @@
 import { React } from "react";
 import { InfoBoxLarge } from "../InfoBoxLarge";
-import { ai_data_dev, back_dev, cloud_devops, front_dev, game_dev, prog_langs } from "../Data/data";
-import { FaLaptopCode } from "react-icons/fa";
+import {
+  ai_data_dev,
+  back_dev,
+  cloud_devops,
+  front_dev,
+  game_dev,
+  prog_langs,
+} from "../Data/data";
 import { IoCodeSlash, IoExtensionPuzzleOutline } from "react-icons/io5";
 import { MdOutlineWebAsset } from "react-icons/md";
 import { GoDatabase } from "react-icons/go";
 import { BsStars } from "react-icons/bs";
 import { CiCloudOn } from "react-icons/ci";
+import { IconTextSnippet } from "../IconTextSnippet";
+import { FaBook } from "react-icons/fa";
 
 export const Skills = () => {
   const infoBoxes = [
@@ -26,20 +34,20 @@ export const Skills = () => {
       content: back_dev,
     },
     {
-        icon: <BsStars />,
-        title: "Data & AI Development",
-        content: ai_data_dev,
+      icon: <BsStars />,
+      title: "Data & AI Development",
+      content: ai_data_dev,
     },
     {
-        icon: <CiCloudOn />,
-        title: "Cloud & DevOps",
-        content: cloud_devops,
+      icon: <CiCloudOn />,
+      title: "Cloud & DevOps",
+      content: cloud_devops,
     },
     {
       icon: <IoExtensionPuzzleOutline />,
       title: "Game Development",
       content: game_dev,
-    }
+    },
   ];
 
   return (
@@ -51,20 +59,27 @@ export const Skills = () => {
             <span class="opacity-8">Skills & Tech</span>
           </h2>
 
-          <div class="grid gap-6 rounded-4xl md:grid-cols-3 mx-auto max-w-5/6 2xl:max-w-7xl">
-            {infoBoxes.map((box, index) => (
-              <div>
-                <InfoBoxLarge
-                  icon={box["icon"]}
-                  title={box["title"]}
-                  content={box["content"]}
-                />
-              </div>
-            ))}
+          <div class="container mx-auto">
+            <div class="mx-auto grid max-w-5/6 gap-6 rounded-4xl md:grid-cols-3 2xl:max-w-7xl">
+              {infoBoxes.map((box, index) => (
+                <div>
+                  <InfoBoxLarge
+                    icon={box["icon"]}
+                    title={box["title"]}
+                    content={box["content"]}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div class="pt-20">
+              <IconTextSnippet
+                icon={<FaBook />}
+                title="Always Learning"
+                text="I am a forever student. Technology is constantly evolving and never stays still, and neither do I. I'm always trying to learn new things to keep up with the world and to keep it fresh."
+              />
+            </div>
           </div>
-        </div>
-        <div class="absolute -top-25 bottom-0 -z-20 hidden min-h-full min-w-full translate-y-70 bg-cover drop-shadow-2xl">
-          <br />
         </div>
       </section>
     </div>

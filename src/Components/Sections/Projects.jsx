@@ -3,6 +3,8 @@ import { SkillPill } from "../SkillPill";
 import { projects } from "../Data/data";
 import { FiGithub } from "react-icons/fi";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { IconTextSnippet } from "../IconTextSnippet";
 
 export const Projects = () => {
   return (
@@ -57,6 +59,14 @@ export const Projects = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div class="pt-20">
+            <IconTextSnippet 
+              icon={<FaArrowAltCircleUp />}
+              title="Always Improving"
+              text="There is no such thing as a perfect project. I am always looking for ways to improve my work, reflecting on my past projects and making better and more efficient solutions each time."
+            />
           </div>
         </div>
       </section>
