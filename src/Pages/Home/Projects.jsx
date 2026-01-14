@@ -1,10 +1,10 @@
 import { React } from "react";
-import { SkillPill } from "../SkillPill";
-import { projects } from "../Data/data";
+import { SkillPill } from "../../Components/SkillPill";
+import { projects } from "../../Data/data";
 import { FiGithub } from "react-icons/fi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaArrowAltCircleUp } from "react-icons/fa";
-import { IconTextSnippet } from "../IconTextSnippet";
+import { IconTextSnippet } from "../../Components/IconTextSnippet";
 
 export const Projects = () => {
   return (

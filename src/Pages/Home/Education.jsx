@@ -1,6 +1,6 @@
 import { React, useState } from "react";
-import { EducationBox } from "../EducationBox";
-import { education } from "../Data/data";
+import { EducationBox } from "../../Components/EducationBox";
+import { education } from "../../Data/data";
 
 export const Education = () => {
   const [eduInFocus, setEduInFocus] = useState(null);

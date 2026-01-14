@@ -1,4 +1,4 @@
-import { icons, attributions } from "./Components/Data/aboutMeIcons";
+import { icons, attributions } from "./Data/aboutMeIcons";
 
 export const Attributions = () => {
   return (

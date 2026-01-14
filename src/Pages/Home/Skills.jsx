@@ -1,5 +1,5 @@
 import { React } from "react";
-import { InfoBoxLarge } from "../InfoBoxLarge";
+import { InfoBoxLarge } from "../../Components/InfoBoxLarge";
 import {
   ai_data_dev,
   back_dev,
@@ -7,13 +7,13 @@ import {
   front_dev,
   game_dev,
   prog_langs,
-} from "../Data/data";
+} from "../../Data/data";
 import { IoCodeSlash, IoExtensionPuzzleOutline } from "react-icons/io5";
 import { MdOutlineWebAsset } from "react-icons/md";
 import { GoDatabase } from "react-icons/go";
 import { BsStars } from "react-icons/bs";
 import { CiCloudOn } from "react-icons/ci";
-import { IconTextSnippet } from "../IconTextSnippet";
+import { IconTextSnippet } from "../../Components/IconTextSnippet";
 import { FaBook } from "react-icons/fa";
 
 export const Skills = () => {

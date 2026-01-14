@@ -1,5 +1,5 @@
 import { FaLaptopCode } from "react-icons/fa";
-import { IconTextSnippet } from "../IconTextSnippet";
+import { IconTextSnippet } from "../../Components/IconTextSnippet";
 
 export const AboutMe = () => {
   return (

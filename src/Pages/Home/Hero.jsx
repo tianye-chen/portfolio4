@@ -1,7 +1,7 @@
 import { React, useRef, useState } from "react";
 import { PiHandWavingFill } from "react-icons/pi";
 import { gsap } from "gsap";
-import { links, broad_skills } from "../Data/data";
+import { links, broad_skills } from "../../Data/data";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { IoMailOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";

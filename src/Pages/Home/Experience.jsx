@@ -1,6 +1,6 @@
 import { React } from "react";
-import { SkillPill } from "../SkillPill";
-import { experience } from "../Data/data";
+import { SkillPill } from "../../Components/SkillPill";
+import { experience } from "../../Data/data";
 
 export const Experience = () => {
   return (

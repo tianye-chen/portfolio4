@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Hero } from "./Components/Sections/Hero";
-import { AboutMe } from "./Components/Sections/AboutMe";
-import { Skills } from "./Components/Sections/Skills";
-import { Education } from "./Components/Sections/Education";
-import { Experience } from "./Components/Sections/Experience";
-import { Projects } from "./Components/Sections/Projects";
-import { Footer } from "./Components/Sections/Footer";
+import { Hero } from "./Pages/Home/Hero";
+import { AboutMe } from "./Pages/Home/AboutMe";
+import { Skills } from "./Pages/Home/Skills";
+import { Education } from "./Pages/Home/Education";
+import { Experience } from "./Pages/Home/Experience";
+import { Projects } from "./Pages/Home/Projects";
+import { Footer } from "./Pages/Home/Footer";
 
 export const Home = () => {
   return (
