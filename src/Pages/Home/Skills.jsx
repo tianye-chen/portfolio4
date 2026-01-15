@@ -52,7 +52,7 @@ export const Skills = () => {
 
   return (
     <div>
-      <section class="py-40">
+      <section id="skills" class="py-40">
         {/** Personal attributes */}
         <div class="relative">
           <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">

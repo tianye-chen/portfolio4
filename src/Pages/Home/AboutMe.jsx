@@ -5,7 +5,7 @@ export const AboutMe = () => {
   return (
     <div>
       {/** About Me */}
-      <section class="bg-teal-50 pt-60 pb-40">
+      <section id="about" class="bg-teal-50 pt-60 pb-40">
         <div class="relative mx-auto flex flex-col items-center justify-center px-[6rem]">
           <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
             <span class="opacity-8">About Me</span>

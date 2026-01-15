@@ -10,7 +10,7 @@ export const Projects = () => {
   return (
     <div>
       {/** Projects */}
-      <section class="bg-teal-50 py-40">
+      <section class="bg-teal-50 py-40" id="projects">
         <div class="relative mx-auto px-4">
           <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
             <span class="opacity-8">Projects</span>
