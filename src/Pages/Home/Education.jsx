@@ -13,13 +13,13 @@ export const Education = () => {
   return (
     /** Education */
     <div>
-      <section class="bg-teal-50 py-40 pt-80">
-        <div class="relative mx-auto px-4">
-          <h2 class="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
-            <span class="opacity-8">Education</span>
+      <section className="bg-teal-50 py-40 pt-80">
+        <div className="relative mx-auto px-4">
+          <h2 className="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
+            <span className="opacity-8">Education</span>
           </h2>
           <div
-            class={`relative flex min-h-[80vh] flex-col gap-4 overflow-hidden rounded-4xl md:flex-row md:gap-0`}
+            className={`relative flex min-h-[80vh] flex-col gap-4 overflow-hidden rounded-4xl md:flex-row md:gap-0`}
           >
             {education.map((edu, index) => (
               <EducationBox

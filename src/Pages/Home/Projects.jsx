@@ -10,25 +10,27 @@ export const Projects = () => {
   return (
     <div>
       {/** Projects */}
-      <section class="bg-teal-50 py-40" id="projects">
-        <div class="relative mx-auto px-4">
-          <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            <span class="opacity-8">Projects</span>
+      <section className="bg-teal-50 py-40" id="projects">
+        <div className="relative mx-auto px-4">
+          <h2 className="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            <span className="opacity-8">Projects</span>
           </h2>
 
-          <div class="flex min-w-screen items-center justify-center">
-            <div class="z-10 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
+          <div className="flex min-w-screen items-center justify-center">
+            <div className="z-10 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((proj, index) => (
-                <div key={index} class="border-l-2 border-emerald-200 px-8">
-                  <p class="text-lg font-semibold">
+                <div key={index} className="border-l-2 border-emerald-200 px-8">
+                  <div className="text-lg font-semibold">
                     {proj["title"]}{" "}
-                    <span class="text-sm text-gray-500">{proj["year"]}</span>
-                    <div class="flex gap-2 py-2">
+                    <span className="text-sm text-gray-500">{proj["year"]}</span>
+
+                    {/** Project Links */}
+                    <div className="flex gap-2 py-2">
                       {proj["repo"] && (
                         <a
                           href={proj["repo"]}
                           target="_blank"
-                          class="transition-all ease-in-out hover:text-emerald-400"
+                          className="transition-all ease-in-out hover:text-emerald-400"
                         >
                           {" "}
                           <FiGithub title="Repository" />
@@ -38,22 +40,22 @@ export const Projects = () => {
                         <a
                           href={proj["demo"]}
                           target="_blank"
-                          class="transition-all ease-in-out hover:text-emerald-400"
+                          className="transition-all ease-in-out hover:text-emerald-400"
                         >
                           <FaExternalLinkAlt title="Demo" />
                         </a>
                       )}
                     </div>
-                  </p>
+                  </div>
                   <div>
                     {proj["attributes"].map((att, attIndex) => (
-                      <span>{att} </span>
+                      <span key={attIndex}>{att}</span>
                     ))}
                   </div>
-                  <p class="mb-4 text-gray-500">{proj["description"]}</p>
-                  <div class="flex flex-wrap gap-2">
+                  <p className="mb-4 text-gray-500">{proj["description"]}</p>
+                  <div className="flex flex-wrap gap-2">
                     {proj["tech"].map((tech, techIndex) => (
-                      <SkillPill skill={tech} />
+                      <SkillPill skill={tech} key={techIndex}/>
                     ))}
                   </div>
                 </div>
@@ -61,7 +63,7 @@ export const Projects = () => {
             </div>
           </div>
 
-          <div class="pt-20">
+          <div className="pt-20">
             <IconTextSnippet 
               icon={<FaArrowAltCircleUp />}
               title="Always Improving"

@@ -6,28 +6,28 @@ export const Experience = () => {
   return (
     <div>
       {/** Experience */}
-      <section class="py-40">
-        <div class="relative mx-auto px-4">
-          <h2 class="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            {/*<LuBriefcase class="mr-2" />*/}
-            <span class="opacity-8">Experience</span>
+      <section className="py-40">
+        <div className="relative mx-auto px-4">
+          <h2 className="absolute -top-[14rem] -z-10 mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            {/*<LuBriefcase className="mr-2" />*/}
+            <span className="opacity-8">Experience</span>
           </h2>
-          <div class="flex min-w-screen items-center justify-center">
-            <div class="z-10 grid grid-cols-1 gap-12">
+          <div className="flex min-w-screen items-center justify-center">
+            <div className="z-10 grid grid-cols-1 gap-12">
               {experience.map((exp, index) => (
-                <div key={index} class="border-l-2 border-emerald-200 pl-8 max-w-3xl">
-                  <p class="text-lg font-semibold">
+                <div key={index} className="border-l-2 border-emerald-200 pl-8 max-w-3xl">
+                  <p className="text-lg font-semibold">
                     {exp["company"]}{" "}
-                    <span class="text-sm text-gray-500">{exp["duration"]}</span>
+                    <span className="text-sm text-gray-500">{exp["duration"]}</span>
                   </p>
-                  <p class="font-semibold text-balance text-gray-500">
+                  <p className="font-semibold text-balance text-gray-500">
                     {exp["title"]}
                   </p>
-                  <p class="mb-4 text-gray-500">{exp["description"]}</p>
+                  <p className="mb-4 text-gray-500">{exp["description"]}</p>
 
-                  <div class="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {exp["skills"].map((ExpSkill, SkillIndex) => (
-                      <SkillPill skill={ExpSkill} />
+                      <SkillPill key={SkillIndex} skill={ExpSkill} />
                     ))}
                   </div>
                 </div>

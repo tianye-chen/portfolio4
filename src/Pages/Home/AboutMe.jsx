@@ -5,12 +5,12 @@ export const AboutMe = () => {
   return (
     <div>
       {/** About Me */}
-      <section id="about" class="bg-teal-50 pt-60 pb-40">
-        <div class="relative mx-auto flex flex-col items-center justify-center px-[6rem]">
-          <h2 class="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
-            <span class="opacity-8">About Me</span>
+      <section id="about" className="bg-teal-50 pt-60 pb-40">
+        <div className="relative mx-auto flex flex-col items-center justify-center px-[6rem]">
+          <h2 className="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
+            <span className="opacity-8">About Me</span>
           </h2>
-          <div class="mb-8 max-w-4xl text-center text-3xl font-light md:text-left">
+          <div className="mb-8 max-w-4xl text-center text-3xl font-light md:text-left">
             <p>
               Hey there, thanks for stopping by! I'm a passionate developer who
               loves creating new and interesting projects. My journey in tech

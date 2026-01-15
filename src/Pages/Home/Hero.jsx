@@ -15,159 +15,219 @@ export const Hero = () => {
   const firstNameBGLargeRef = useRef();
   const lastNameBGLargeRef = useRef();
   const nameCenterSectionRef = useRef([]);
-  const handWaveIconRef = useRef([]);
+  const handWaveIconRef = useRef(null);
   const downArrowRef = useRef();
   const socialsRef = useRef([]);
   const socialIconsRef = useRef([]);
   const typewriterRef = useRef([]);
 
-  const [gradPos, setGradPos] = useState({ x: 50, y: 50 });
-
   const refPush = (el, ref) => {
-    ref.current.push(el);
-  };
-
-  // Moving gradient background for name
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const x = (clientX / window.innerWidth) * 100;
-    const y = (clientY / window.innerHeight) * 100;
-
-    setGradPos({ x, y });
+    if (el) {
+      ref.current.push(el);
+    }
   };
 
   useGSAP(() => {
-    // Set initial properties for social media icons on the name page
-    socialIconsRef.current.forEach((icon) => {
-      gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
-    });
-
-    gsap.set(firstNameBGLargeRef.current, { opacity: 0, translateX: -1000 });
-    gsap.to(firstNameBGLargeRef.current, {
-      opacity: 0.05,
-      translateX: 0,
-      duration: 4,
-      ease: "power1.inOut",
-    });
-
-    gsap.set(lastNameBGLargeRef.current, { opacity: 0, translateX: 1000 });
-    gsap.to(lastNameBGLargeRef.current, {
-      opacity: 0.05,
-      translateX: 0,
-      duration: 4,
-      ease: "power1.inOut",
-    });
-
-    nameCenterSectionRef.current.forEach((item) => {
-      gsap.set(item, { opacity: 0, translateY: -30 });
-    });
-
-    socialsRef.current.forEach((item) => {
-      gsap.set(item, { opacity: 0, translateY: 100 });
-    });
-
-    socialsRef.current.forEach((item) => {
-      gsap.to(item, {
-        opacity: 1,
-        translateY: 0,
-        duration: 1.5,
-        ease: "power1.inOut",
-      });
-    });
-
-    const startUpTimeLine = gsap.timeline({});
-
-    nameCenterSectionRef.current.forEach((item, index) => {
-      startUpTimeLine.to(
-        item,
-        {
-          opacity: 1,
-          translateY: 0,
-          duration: 1.5,
-        },
-        0.5 * index,
-      );
-    });
-
-    // For text loop on the name page
+    const nameSectionTimeline = gsap.timeline({});
     const typewriterCursorTimeline = gsap.timeline({
       repeat: -1,
       repeatDelay: 1,
     });
     const typewriterTimeline = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-
-    // Cycle through each skill in the loop with typing effect
-    broad_skills.forEach((skill) => {
-      typewriterRef.current.forEach((el) => {
-        typewriterTimeline.to(el, {
-          duration: 2,
-          text: skill,
-          ease: "power1.inOut",
-        });
-      });
-    });
-
-    // Animate the blinking cursor effect
-    typewriterRef.current.forEach((el) => {
-      typewriterCursorTimeline.fromTo(
-        el,
-        {
-          borderRightColor: "#10b981",
-          duration: 1,
-          repeat: -1,
-          ease: "steps(1)",
-        },
-        {
-          borderRightColor: "transparent",
-          duration: 1,
-          repeat: -1,
-          ease: "steps(1)",
-        },
-      );
-    });
-
-    // For hand icon waving effect on the hand page
     const handWaveTimeline = gsap.timeline({ repeat: 2 });
 
-    handWaveTimeline
-      .to(handWaveIconRef.current, { rotate: 15, duration: 0.25, ease: "none" })
-      .to(handWaveIconRef.current, { rotate: -15, duration: 0.5, ease: "none" })
-      .to(handWaveIconRef.current, { rotate: 0, duration: 0.25, ease: "none" });
-
-    // Down arrow icon
-    gsap.to(downArrowRef.current, {
-      y: 10,
-      repeat: -1,
-      yoyo: true,
-      duration: 1,
-      ease: "power1.inOut",
-    });
-
-    return () => {
-      socialIconsRef.current.forEach((item) => {
-        gsap.killTweensOf(item);
-      });
-
-      typewriterRef.current.forEach((item) => {
-        gsap.killTweensOf(item);
-      });
-
-      nameCenterSectionRef.current.forEach((item) => {
-        gsap.killTweensOf(item);
+    // Social media icons
+    if (socialIconsRef.current && socialIconsRef.current.length > 0) {
+      // Set initial properties of the icons
+      socialIconsRef.current.forEach((icon) => {
+        if (icon) {
+          gsap.set(icon, { opacity: 1, rotate: 0, scale: 1 });
+        }
       });
 
       socialsRef.current.forEach((item) => {
-        gsap.killTweensOf(item);
+        if (item) {
+          gsap.set(item, { opacity: 0, translateY: 100 });
+        }
       });
 
-      gsap.killTweensOf(firstNameBGLargeRef.current);
-      gsap.killTweensOf(lastNameBGLargeRef.current);
-      gsap.killTweensOf(downArrowRef.current);
+      socialsRef.current.forEach((item) => {
+        if (item) {
+          gsap.to(item, {
+            opacity: 1,
+            translateY: 0,
+            duration: 1.5,
+            ease: "power1.inOut",
+          });
+        }
+      });
+    }
+
+    // Giant last name in the background
+    if (firstNameBGLargeRef.current) {
+      gsap.set(firstNameBGLargeRef.current, { opacity: 0, translateX: -1000 });
+      gsap.to(firstNameBGLargeRef.current, {
+        opacity: 0.05,
+        translateX: 0,
+        duration: 4,
+        ease: "power1.inOut",
+      });
+    }
+
+    // Giant last name in the background
+    if (lastNameBGLargeRef.current) {
+      gsap.set(lastNameBGLargeRef.current, { opacity: 0, translateX: 1000 });
+      gsap.to(lastNameBGLargeRef.current, {
+        opacity: 0.05,
+        translateX: 0,
+        duration: 4,
+        ease: "power1.inOut",
+      });
+    }
+
+    // Name in the center
+    if (nameCenterSectionRef.current && nameCenterSectionRef.current.length > 0) {
+      nameCenterSectionRef.current.forEach((item) => {
+        if (item) {
+          gsap.set(item, { opacity: 0, translateY: -30 });
+        }
+      });
+
+      nameCenterSectionRef.current.forEach((item, index) => {
+        if (item) {
+          nameSectionTimeline.to(
+            item,
+            {
+              opacity: 1,
+              translateY: 0,
+              duration: 1.5,
+            },
+            0.5 * index,
+          );
+        }
+      });
+    }
+
+    // Typed text effect
+    if (typewriterRef.current && typewriterRef.current.length > 0) {
+      // Filter out null/undefined refs
+      const validTypewriterRefs = typewriterRef.current.filter((el) => el !== null && el !== undefined);
+      
+      if (validTypewriterRefs.length > 0) {
+        // Cycle through each skill in the loop with typing effect
+        broad_skills.forEach((skill) => {
+          validTypewriterRefs.forEach((el) => {
+            typewriterTimeline.to(el, {
+              duration: 2,
+              text: skill,
+              ease: "power1.inOut",
+            });
+          });
+        });
+
+        // Animate the blinking cursor effect
+        validTypewriterRefs.forEach((el) => {
+          typewriterCursorTimeline.fromTo(
+            el,
+            {
+              borderRightColor: "#10b981",
+              duration: 1,
+              repeat: -1,
+              ease: "steps(1)",
+            },
+            {
+              borderRightColor: "transparent",
+              duration: 1,
+              repeat: -1,
+              ease: "steps(1)",
+            },
+          );
+        });
+      }
+    }
+
+    // Hand icon next to "Hello, I'm"
+    if (handWaveIconRef.current) {
+      handWaveTimeline
+        .to(handWaveIconRef.current, {
+          rotate: 15,
+          duration: 0.25,
+          ease: "none",
+        })
+        .to(handWaveIconRef.current, {
+          rotate: -15,
+          duration: 0.5,
+          ease: "none",
+        })
+        .to(handWaveIconRef.current, {
+          rotate: 0,
+          duration: 0.25,
+          ease: "none",
+        });
+    }
+
+    // Down arrow icon
+    if (downArrowRef.current) {
+      gsap.to(downArrowRef.current, {
+        y: 10,
+        repeat: -1,
+        yoyo: true,
+        duration: 1,
+        ease: "power1.inOut",
+      });
+    }
+
+    return () => {
+      if (socialIconsRef.current) {
+        socialIconsRef.current.forEach((item) => {
+          if (item) {
+            gsap.killTweensOf(item);
+          }
+        });
+      }
+
+      if (typewriterRef.current) {
+        typewriterRef.current.forEach((item) => {
+          if (item) {
+            gsap.killTweensOf(item);
+          }
+        });
+      }
+
+      if (nameCenterSectionRef.current) {
+        nameCenterSectionRef.current.forEach((item) => {
+          if (item) {
+            gsap.killTweensOf(item);
+          }
+        });
+      }
+
+      if (socialsRef.current) {
+        socialsRef.current.forEach((item) => {
+          if (item) {
+            gsap.killTweensOf(item);
+          }
+        });
+      }
+
+      if (handWaveIconRef.current) {
+        gsap.killTweensOf(handWaveIconRef.current);
+      }
+      if (firstNameBGLargeRef.current) {
+        gsap.killTweensOf(firstNameBGLargeRef.current);
+      }
+      if (lastNameBGLargeRef.current) {
+        gsap.killTweensOf(lastNameBGLargeRef.current);
+      }
+      if (downArrowRef.current) {
+        gsap.killTweensOf(downArrowRef.current);
+      }
     };
   }, []);
 
   // Mouse enter and leave effects for icons, rotates and scales the icon
   const handleIconMouseEnter = (index) => {
+    if (!socialIconsRef.current[index]) return;
     const min = -20;
     const max = 20;
     const randRotation = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -180,6 +240,7 @@ export const Hero = () => {
   };
 
   const handleIconMouseLeave = (index) => {
+    if (!socialIconsRef.current[index]) return;
     gsap.to(socialIconsRef.current[index], {
       opacity: 1,
       rotate: 0,
@@ -190,35 +251,35 @@ export const Hero = () => {
   };
 
   return (
-    <div onMouseMove={handleMouseMove}>
+    <div>
       {/** Dotted background pattern */}
-      <div class="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
+      <div className="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
 
-      <div class="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
+      <div className="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
         <div
-          class="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
+          className="font-lexend pointer-events-none absolute -top-1.5 left-4 hidden min-w-screen text-left text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
           ref={firstNameBGLargeRef}
         >
           DANIEL
         </div>
         <div
-          class="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
+          className="font-lexend pointer-events-none absolute bottom-0 hidden min-w-screen text-right text-base/85 font-bold opacity-5 sm:block sm:text-[15rem] md:text-[23rem]"
           ref={lastNameBGLargeRef}
         >
           CHEN
         </div>
 
-        <div class="">
+        <div className="">
           <h1
-            class="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start"
+            className="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             {" "}
-            <PiHandWavingFill class="mr-2" ref={handWaveIconRef} /> Hello,
+            <PiHandWavingFill className="mr-2" ref={(el) => (handWaveIconRef.current = el)} /> Hello,
             I'm{" "}
           </h1>
           <h1
-            class={`font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent md:text-6xl`}
+            className={`font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent md:text-6xl`}
             style={{
               backgroundImage: `linear-gradient(90deg, #4DE3B6 0%, #00BC7D 10%, #009999 100%)`,
             }}
@@ -227,48 +288,56 @@ export const Hero = () => {
             Daniel Chen
           </h1>
           <p
-            class="mb-4 text-xl font-bold text-emerald-500"
+            className="mb-4 text-xl font-bold text-emerald-500"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             Master's Graduate in Computer Science
           </p>
 
           <p
-            class="absolute hidden text-center text-3xl font-light md:block"
+            className="absolute hidden text-center text-3xl font-light md:block"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             Creating Solutions with{" "}
             <span
-              class="border-r-2 border-emerald-500 pr-1"
-              ref={(el) => (typewriterRef.current[0] = el)}
+              className="border-r-2 border-emerald-500 pr-1"
+              ref={(el) => {
+                if (el) {
+                  typewriterRef.current[0] = el;
+                }
+              }}
             >
               {broad_skills[broad_skills.length - 1]}
             </span>
           </p>
 
           <div
-            class="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden"
+            className="absolute left-1 flex min-w-screen flex-col items-center gap-2 text-center text-2xl font-light md:hidden"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             <p> Creating Solutions with </p>
             <span
-              class="border-r-2 border-emerald-500 pr-1"
-              ref={(el) => (typewriterRef.current[1] = el)}
+              className="border-r-2 border-emerald-500 pr-1"
+              ref={(el) => {
+                if (el) {
+                  typewriterRef.current[1] = el;
+                }
+              }}
             ></span>
           </div>
         </div>
         <div
-          class="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500"
+          className="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500"
           ref={(el) => refPush(el, socialsRef)}
         >
-          <h1 class="font-lexend text-2xl">
+          <h1 className="font-lexend text-2xl">
             Let's{" "}
-            <span class="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
-              <span class="relative mr-1 text-white">Connect</span>
+            <span className="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
+              <span className="relative mr-1 text-white">Connect</span>
             </span>
           </h1>
           <div
-            class="flex gap-6 text-3xl"
+            className="flex gap-6 text-3xl"
             ref={(el) => refPush(el, socialsRef)}
           >
             {[FiGithub, FiLinkedin, IoMailOutline].map((Icon, index) => (
@@ -285,7 +354,7 @@ export const Hero = () => {
                   }
                   onMouseEnter={() => handleIconMouseEnter(index)}
                   onMouseLeave={() => handleIconMouseLeave(index)}
-                  class="cursor-pointer"
+                  className="cursor-pointer"
                 />
               </a>
             ))}
@@ -293,7 +362,7 @@ export const Hero = () => {
         </div>
 
         <IoIosArrowDown
-          class="absolute bottom-10 flex justify-center text-4xl text-emerald-500"
+          className="absolute bottom-10 flex justify-center text-4xl text-emerald-500"
           ref={downArrowRef}
         />
       </div>

@@ -52,27 +52,28 @@ export const Skills = () => {
 
   return (
     <div>
-      <section id="skills" class="py-40">
+      <section id="skills" className="py-40">
         {/** Personal attributes */}
-        <div class="relative">
-          <h2 class="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
-            <span class="opacity-8">Skills & Tech</span>
+        <div className="relative">
+          <h2 className="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
+            <span className="opacity-8">Skills & Tech</span>
           </h2>
 
-          <div class="container mx-auto">
-            <div class="mx-auto grid max-w-5/6 gap-6 rounded-4xl md:grid-cols-3 2xl:max-w-7xl">
+          <div className="container mx-auto">
+            <div className="mx-auto grid max-w-5/6 gap-6 rounded-4xl md:grid-cols-3 2xl:max-w-7xl">
               {infoBoxes.map((box, index) => (
                 <div>
                   <InfoBoxLarge
                     icon={box["icon"]}
                     title={box["title"]}
                     content={box["content"]}
+                    key={index}
                   />
                 </div>
               ))}
             </div>
 
-            <div class="pt-20">
+            <div className="pt-20">
               <IconTextSnippet
                 icon={<FaBook />}
                 title="Always Learning"

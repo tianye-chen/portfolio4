@@ -8,7 +8,7 @@ import { Projects } from "./Pages/Home/Projects";
 
 export const Home = () => {
   return (
-    <div class="min-h-screen overflow-hidden">
+    <div className="min-h-screen overflow-hidden">
       <Hero />
       <AboutMe />
       <Skills />
@@ -19,7 +19,7 @@ export const Home = () => {
       {/** Credits to icons */}
       {false && (
         <footer>
-          <p class="bg-teal-50 text-xs">
+          <p className="bg-teal-50 text-xs">
             <Link to="/attributions" target="_blank">
               Attributions
             </Link>
