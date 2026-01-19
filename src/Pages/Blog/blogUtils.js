@@ -62,9 +62,9 @@ export const loadAllBlogs = async () => {
  * @param {string} slug - The blog slug
  * @returns {Object|null} Blog object or null if not found
  */
-export const getBlogBySlug = (slug) => {
-  const blogs = loadAllBlogs();
-  return blogs.find(blog => blog.slug === slug) || null;
+export const getBlogBySlug = async (slug) => {
+  const blogs = await loadAllBlogs();
+  return blogs.find(blog => blog.slug == slug) || null;
 };
 
 /**

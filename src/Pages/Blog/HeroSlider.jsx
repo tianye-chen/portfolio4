@@ -58,7 +58,7 @@ export const HeroSlider = ({ blogs, formatDate }) => {
 								(prev) => (prev - 1 + featuredBlogs.length) % featuredBlogs.length
 							)
 						}
-						className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/25 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
+						className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/25 backdrop-blur-xs hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
 						aria-label="Previous slide"
 					>
 						<svg
@@ -79,7 +79,7 @@ export const HeroSlider = ({ blogs, formatDate }) => {
 						onClick={() =>
 							setCurrentIndex((prev) => (prev + 1) % featuredBlogs.length)
 						}
-						className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
+						className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/25 backdrop-blur-xs hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
 						aria-label="Next slide"
 					>
 						<svg
