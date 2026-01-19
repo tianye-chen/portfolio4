@@ -17,14 +17,14 @@ export const Nav = () => {
     { name: "Blog", path: "/blog", id: "blog" },
   ];
 
-  // Automatically determine if item is a route or section
+  //  Determine if item is a route or section
   const navItems = navItemsRaw.map((item) => ({
     ...item,
     isRoute: item.path.startsWith("/"),
   }));
 
-  const buttonWidth = 48; // 12 * 4 = 48px (w-12 = 3rem = 48px)
-  const gap = 12; // 12px gap between items
+  const buttonWidth = 48;
+  const gap = 12;
 
   useLayoutEffect(() => {
     // Calculate positions based on actual widths
@@ -160,7 +160,7 @@ export const Nav = () => {
               ) : (
                 <button
                   onClick={(e) => handleItemClick(item, e)}
-                  className="block w-full rounded-full bg-white px-4 py-2 text-left font-medium whitespace-nowrap text-gray-800 shadow-lg transition-colors duration-200 hover:bg-gray-100"
+                  className="block w-full rounded-full bg-gray-200 px-4 py-2 text-left font-medium whitespace-nowrap text-gray-800 shadow-lg transition-colors duration-200 hover:bg-gray-300"
                 >
                   {item.name}
                 </button>

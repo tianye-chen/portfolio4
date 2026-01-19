@@ -1,5 +1,5 @@
 import { React } from "react";
-import { SkillPill } from "../../Components/SkillPill";
+import { ItemPill } from "../../Components/ItemPill";
 import { projects } from "../../Data/data";
 import { FiGithub } from "react-icons/fi";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -55,7 +55,7 @@ export const Projects = () => {
                   <p className="mb-4 text-gray-500">{proj["description"]}</p>
                   <div className="flex flex-wrap gap-2">
                     {proj["tech"].map((tech, techIndex) => (
-                      <SkillPill skill={tech} key={techIndex}/>
+                      <ItemPill item={tech} key={techIndex}/>
                     ))}
                   </div>
                 </div>

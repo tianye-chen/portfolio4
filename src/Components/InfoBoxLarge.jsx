@@ -1,5 +1,5 @@
 import React from "react";
-import { SkillPill } from "./SkillPill";
+import { ItemPill } from "./ItemPill";
 
 export const InfoBoxLarge = ({
   icon,
@@ -21,7 +21,7 @@ export const InfoBoxLarge = ({
         </div>
         <div className="flex flex-wrap gap-2">
           {content.map((item, index) => (
-            <SkillPill skill={item} key={index} slateBase={true} />
+            <ItemPill item={item} key={index} slateBase={true} />
           ))}
         </div>
       </div>

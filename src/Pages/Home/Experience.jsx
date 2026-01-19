@@ -1,5 +1,5 @@
 import { React } from "react";
-import { SkillPill } from "../../Components/SkillPill";
+import { ItemPill } from "../../Components/ItemPill";
 import { experience } from "../../Data/data";
 
 export const Experience = () => {
@@ -27,7 +27,7 @@ export const Experience = () => {
 
                   <div className="flex flex-wrap gap-2">
                     {exp["skills"].map((ExpSkill, SkillIndex) => (
-                      <SkillPill key={SkillIndex} skill={ExpSkill} />
+                      <ItemPill key={SkillIndex} skill={ExpSkill} />
                     ))}
                   </div>
                 </div>
