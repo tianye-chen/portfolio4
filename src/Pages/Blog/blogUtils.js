@@ -73,7 +73,7 @@ export const getBlogBySlug = async (slug) => {
  * @returns {string|null} Image url or null if fetch was not successful
  */
 const fetchRandomImg = async (seed = "random") => {
-  const url = `https://picsum.photos/seed/${seed}/1440`
+  const url = `https://picsum.photos/seed/${seed}/1920/1080`
   try {
     const res = await fetch(url)
     if (res.ok) {

@@ -75,7 +75,7 @@ export const BlogList = () => {
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-amber-50 to-[#fdf5e2] min-h-screen">
+    <div className="w-full bg-gradient-to-b from-[#fffdf7] to-[#fcfffb] min-h-screen">
       {/* Hero Section */}
       <div className="w-full px-4 md:px-2 pt-2">
         <HeroSlider blogs={allBlogs} formatDate={formatDate} />
@@ -93,7 +93,7 @@ export const BlogList = () => {
             <select
               value={sortOrder}
               onChange={(e) => handleSortChange(e.target.value)}
-              className="px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-transparent cursor-pointer transition-all"
+              className="px-4 py-2 bg-white border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-transparent cursor-pointer transition-all"
             >
               <option value="newest">Newest First</option>
               <option value="oldest">Oldest First</option>

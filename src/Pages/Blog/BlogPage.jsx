@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import { ItemPill } from "../../Components/ItemPill"
 
 export const BlogPage = ({ title, date, tags, content }) => {
   const formatDate = (dateString) => {
@@ -12,7 +13,7 @@ export const BlogPage = ({ title, date, tags, content }) => {
   };
 
   return (
-    <div className="w-full bg-[#fdf5e2] min-h-screen py-8 px-4">
+    <div className="w-full bg-[#fcfffb] min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-8">
@@ -25,12 +26,7 @@ export const BlogPage = ({ title, date, tags, content }) => {
           {tags && tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
-                >
-                  {tag}
-                </span>
+                  <ItemPill key={index} item={tag} />
               ))}
             </div>
           )}
