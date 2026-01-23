@@ -13,8 +13,7 @@ export const BlogPage = ({ title, date, tags, content }) => {
   };
 
   return (
-    <div className="w-full bg-secondary-background min-h-screen py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div>
         {/* Header */}
         <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title || 'Untitled'}</h1>
@@ -36,7 +35,6 @@ export const BlogPage = ({ title, date, tags, content }) => {
         <article className="prose lg:prose-xl max-w-none">
           <ReactMarkdown>{content || ''}</ReactMarkdown>
         </article>
-      </div>
     </div>
   );
 };

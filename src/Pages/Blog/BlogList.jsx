@@ -2,11 +2,14 @@ import { useState, useMemo, useEffect } from "react";
 import { loadAllBlogs } from "./blogUtils";
 import { HeroSlider } from "./HeroSlider";
 import { BlogCard } from "./BlogCard";
+import { Loading } from "../../Components/Loading";
+import config from "../../config.json"
 
 export const BlogList = () => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [sortOrder, setSortOrder] = useState("newest"); // "newest" or "oldest"
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const blogsPerPage = 12;
 
   useEffect(() => {
@@ -16,6 +19,8 @@ export const BlogList = () => {
         setAllBlogs(blogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -52,10 +57,9 @@ export const BlogList = () => {
     }
   }, [allBlogs, sortOrder]);
 
-  // Get blogs for grid (excluding the featured ones shown in hero)
-  // Hero shows up to 3 most recent blogs, so grid shows the rest
+  // Get blogs for grid
   const gridBlogs = useMemo(() => {
-    const heroCount = Math.min(3, sortedBlogs.length);
+    const heroCount = config.blog.displayHeroPosts ? 0 : Math.min(config.blog.heroCount, sortedBlogs.length)
     return sortedBlogs.slice(heroCount);
   }, [sortedBlogs]);
 
@@ -73,6 +77,12 @@ export const BlogList = () => {
     setSortOrder(newSortOrder);
     setCurrentPage(1);
   };
+
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
 
   return (
     <div className="w-full bg-gradient-to-b from-primary-background to-secondary-background min-h-screen">

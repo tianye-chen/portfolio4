@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { BlogCard } from "./BlogCard";
+import config from "../../config.json"
 
 export const HeroSlider = ({ blogs, formatDate }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const featuredBlogs = blogs.slice(0, 3);
+	const featuredBlogs = blogs.slice(0, config.blog.heroCount);
 
 	useEffect(() => {
 		if (featuredBlogs.length <= 1) return;
