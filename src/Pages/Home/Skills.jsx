@@ -51,7 +51,7 @@ export const Skills = () => {
   ];
 
   return (
-    <div>
+    <div className="text-primary-text">
       <section id="skills" className="py-40">
         {/** Personal attributes */}
         <div className="relative">

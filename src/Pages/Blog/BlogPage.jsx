@@ -13,13 +13,13 @@ export const BlogPage = ({ title, date, tags, content }) => {
   };
 
   return (
-    <div className="w-full bg-[#fcfffb] min-h-screen py-8 px-4">
+    <div className="w-full bg-secondary-background min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title || 'Untitled'}</h1>
           {date && (
-            <time className="text-gray-600 text-lg block mb-4">
+            <time className="text-secondary-text text-lg block mb-4">
               {formatDate(date)}
             </time>
           )}

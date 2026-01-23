@@ -18,12 +18,12 @@ export const Experience = () => {
                 <div key={index} className="border-l-2 border-emerald-200 pl-8 max-w-3xl">
                   <p className="text-lg font-semibold">
                     {exp["company"]}{" "}
-                    <span className="text-sm text-gray-500">{exp["duration"]}</span>
+                    <span className="text-sm text-secondary-text">{exp["duration"]}</span>
                   </p>
-                  <p className="font-semibold text-balance text-gray-500">
+                  <p className="font-semibold text-balance text-secondary-text">
                     {exp["title"]}
                   </p>
-                  <p className="mb-4 text-gray-500">{exp["description"]}</p>
+                  <p className="mb-4 text-secondary-text">{exp["description"]}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {exp["skills"].map((ExpSkill, SkillIndex) => (

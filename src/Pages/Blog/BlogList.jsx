@@ -75,7 +75,7 @@ export const BlogList = () => {
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-[#fffdf7] to-[#fcfffb] min-h-screen">
+    <div className="w-full bg-gradient-to-b from-primary-background to-secondary-background min-h-screen">
       {/* Hero Section */}
       <div className="w-full px-4 md:px-2 pt-2">
         <HeroSlider blogs={allBlogs} formatDate={formatDate} />
@@ -85,7 +85,7 @@ export const BlogList = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12">
         {/* Header with Sort */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 md:mb-0">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-text mb-4 md:mb-0">
             All Posts
           </h2>
           <div className="flex items-center gap-3">
@@ -93,7 +93,7 @@ export const BlogList = () => {
             <select
               value={sortOrder}
               onChange={(e) => handleSortChange(e.target.value)}
-              className="px-4 py-2 bg-white border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-transparent cursor-pointer transition-all"
+              className="px-4 py-2 bg-primary-background border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-border-active focus:border-transparent cursor-pointer transition-all"
             >
               <option value="newest">Newest First</option>
               <option value="oldest">Oldest First</option>
@@ -104,7 +104,7 @@ export const BlogList = () => {
         {/* Blog Grid */}
         {paginatedBlogs.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">No blog posts found.</p>
+            <p className="text-secondary-text text-lg">No blog posts found.</p>
           </div>
         ) : (
           <>
@@ -125,7 +125,7 @@ export const BlogList = () => {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-50 transition-colors"
+                  className="px-4 py-2 bg-primary-background border border-border-active rounded-lg text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary-background transition-colors"
                 >
                   Previous
                 </button>
@@ -142,8 +142,8 @@ export const BlogList = () => {
                         key={page}
                         onClick={() => setCurrentPage(page)}
                         className={`px-4 py-2 rounded-lg transition-colors ${currentPage === page
-                          ? "bg-amber-600 text-white font-semibold"
-                          : "bg-white border border-amber-200 text-gray-700 hover:bg-amber-50"
+                          ? "bg-icon-background text-white font-semibold"
+                          : "bg-primary-background border border-border-active text-secondary-text hover:bg-secondary-background"
                           }`}
                       >
                         {page}
@@ -154,7 +154,7 @@ export const BlogList = () => {
                     page === currentPage + 2
                   ) {
                     return (
-                      <span key={page} className="px-2 text-gray-500">
+                      <span key={page} className="px-2 text-secondary-text">
                         ...
                       </span>
                     );
@@ -167,7 +167,7 @@ export const BlogList = () => {
                     setCurrentPage((prev) => Math.min(totalPages, prev + 1))
                   }
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 bg-white border border-amber-200 rounded-lg text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-50 transition-colors"
+                  className="px-4 py-2 bg-primary-background border border-border-active rounded-lg text-secondary-text disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary-background transition-colors"
                 >
                   Next
                 </button>

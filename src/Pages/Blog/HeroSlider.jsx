@@ -40,8 +40,8 @@ export const HeroSlider = ({ blogs, formatDate }) => {
 							key={index}
 							onClick={() => setCurrentIndex(index)}
 							className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-								? "bg-white w-8"
-								: "bg-white/50 hover:bg-white/75"
+								? "bg-hero-nav/50 backdrop-blur-2xl w-8 hover:w-9"
+								: "bg-hero-nav/25 hover:bg-hero-nav/50 hover:backdrop-blur-2xl hover:w-4"
 								}`}
 							aria-label={`Go to slide ${index + 1}`}
 						/>
@@ -58,11 +58,11 @@ export const HeroSlider = ({ blogs, formatDate }) => {
 								(prev) => (prev - 1 + featuredBlogs.length) % featuredBlogs.length
 							)
 						}
-						className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/25 backdrop-blur-xs hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
+						className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-hero-nav/25 backdrop-blur-xs hover:bg-hero-nav/50 hover:backdrop-blur-xl rounded-full p-3 shadow-lg transition-all duration-300"
 						aria-label="Previous slide"
 					>
 						<svg
-							className="w-6 h-6 text-gray-800"
+							className="w-6 h-6 text-primary-text-contrast"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -79,11 +79,11 @@ export const HeroSlider = ({ blogs, formatDate }) => {
 						onClick={() =>
 							setCurrentIndex((prev) => (prev + 1) % featuredBlogs.length)
 						}
-						className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/25 backdrop-blur-xs hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300"
+						className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-hero-nav/25 backdrop-blur-xs hover:bg-hero-nav/50 hover:backdrop-blur-xl rounded-full p-3 shadow-lg transition-all duration-300"
 						aria-label="Next slide"
 					>
 						<svg
-							className="w-6 h-6 text-gray-800"
+							className="w-6 h-6 text-primary-text-contrast"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"

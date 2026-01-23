@@ -8,9 +8,9 @@ import { IconTextSnippet } from "../../Components/IconTextSnippet";
 
 export const Projects = () => {
   return (
-    <div>
+    <div className="text-primary-text">
       {/** Projects */}
-      <section className="bg-teal-50 py-40" id="projects">
+      <section className="bg-secondary-background py-40" id="projects">
         <div className="relative mx-auto px-4">
           <h2 className="pointer-events-none absolute -top-[14rem] mb-8 flex justify-around text-3xl text-[15rem] font-bold">
             <span className="opacity-8">Projects</span>
@@ -19,10 +19,10 @@ export const Projects = () => {
           <div className="flex min-w-screen items-center justify-center">
             <div className="z-10 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((proj, index) => (
-                <div key={index} className="border-l-2 border-emerald-200 px-8">
+                <div key={index} className="border-l-2 border-border-active px-8">
                   <div className="text-lg font-semibold">
                     {proj["title"]}{" "}
-                    <span className="text-sm text-gray-500">{proj["year"]}</span>
+                    <span className="text-sm text-secondary-text">{proj["year"]}</span>
 
                     {/** Project Links */}
                     <div className="flex gap-2 py-2">
@@ -30,7 +30,7 @@ export const Projects = () => {
                         <a
                           href={proj["repo"]}
                           target="_blank"
-                          className="transition-all ease-in-out hover:text-emerald-400"
+                          className="transition-all ease-in-out hover:text-primary"
                         >
                           {" "}
                           <FiGithub title="Repository" />
@@ -40,7 +40,7 @@ export const Projects = () => {
                         <a
                           href={proj["demo"]}
                           target="_blank"
-                          className="transition-all ease-in-out hover:text-emerald-400"
+                          className="transition-all ease-in-out hover:text-primary"
                         >
                           <FaExternalLinkAlt title="Demo" />
                         </a>
@@ -52,7 +52,7 @@ export const Projects = () => {
                       <span key={attIndex}>{att}</span>
                     ))}
                   </div>
-                  <p className="mb-4 text-gray-500">{proj["description"]}</p>
+                  <p className="mb-4 text-secondary-text">{proj["description"]}</p>
                   <div className="flex flex-wrap gap-2">
                     {proj["tech"].map((tech, techIndex) => (
                       <ItemPill item={tech} key={techIndex}/>

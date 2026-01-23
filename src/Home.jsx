@@ -19,7 +19,7 @@ export const Home = () => {
       {/** Credits to icons */}
       {false && (
         <footer>
-          <p className="bg-teal-50 text-xs">
+          <p className="bg-secondary-background text-xs">
             <Link to="/attributions" target="_blank">
               Attributions
             </Link>

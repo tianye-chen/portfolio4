@@ -6,4 +6,33 @@
     --font-roboto: 'Roboto', sans-serif;
     --font-lexend: 'Lexend', sans-serif;
     --font-poiret: 'Poiret One', cursive;
+
+    --color-primary: var(--color-emerald-500);
+
+    --color-primary-text: rgb(0, 0, 0);
+    --color-primary-text-contrast: rgb(255, 255, 255);
+
+    --color-secondary-text: var(--color-gray-500);
+
+    --color-tertiary-text: var(--color-emerald-600);
+    --color-tertiary-text-contrast: var(--color-emerald-300);
+    
+    --color-primary-background: rgb(255, 255, 255);
+    --color-primary-background-hover: var(--color-gray-100);
+    --color-primary-background-inactive: var(--color-gray-200);
+
+    --color-secondary-background: var(--color-teal-50);
+    --color-dotted-background: rgb(229, 231, 235);
+
+    --color-icon-background: var(--color-teal-100);
+    --color-border-active: var(--color-emerald-300);
+    --color-border-inactive: var(--color-black);
+
+    /* Home page specific */
+    --color-gradient-green-1: rgb(77, 227, 182);
+    --color-gradient-green-2: rgb(0, 188, 125);
+    --color-gradient-green-3: rgb(0, 153, 153);
+
+    /* Blog Specific */
+    --color-hero-nav: var(--color-teal-50)
 }

@@ -3,9 +3,9 @@ import { IconTextSnippet } from "../../Components/IconTextSnippet";
 
 export const AboutMe = () => {
   return (
-    <div>
+    <div className="text-primary-text">
       {/** About Me */}
-      <section id="about" className="bg-teal-50 pt-60 pb-40">
+      <section id="about" className="bg-secondary-background pt-60 pb-40">
         <div className="relative mx-auto flex flex-col items-center justify-center px-[6rem]">
           <h2 className="pointer-events-none absolute -top-[19rem] mb-8 w-full text-3xl text-[15rem] font-bold">
             <span className="opacity-8">About Me</span>

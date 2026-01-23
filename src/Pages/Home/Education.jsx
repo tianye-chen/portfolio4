@@ -13,7 +13,7 @@ export const Education = () => {
   return (
     /** Education */
     <div>
-      <section className="bg-teal-50 py-40 pt-80">
+      <section className="bg-secondary-background py-40 pt-80">
         <div className="relative mx-auto px-4">
           <h2 className="pointer-events-none absolute -top-[16.3rem] flex items-center text-[15rem] font-bold">
             <span className="opacity-8">Education</span>

@@ -128,7 +128,7 @@ export const EducationBox = ({
               <br />
             </div>
             <div
-              className={`absolute top-0 left-0 -z-10 min-h-full min-w-full bg-gray-500 opacity-10 ${animTransition} duration-500 group-hover/button:left-1/2 group-hover/button:min-w-0`}
+              className={`absolute top-0 left-0 -z-10 min-h-full min-w-full bg-secondary-text opacity-10 ${animTransition} duration-500 group-hover/button:left-1/2 group-hover/button:min-w-0`}
             >
               <br />
             </div>

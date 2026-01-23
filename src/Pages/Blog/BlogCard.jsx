@@ -23,9 +23,9 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
         </div>
 
         {/* Content Overlay */}
-        <div className="relative h-full flex flex-col justify-end p-8 md:p-12 text-white">
+        <div className="relative h-full flex flex-col justify-end p-8 md:p-12 text-primary-text-contrast">
           {/* Date and Reading Time */}
-          <div className="flex items-center gap-3 text-sm text-white/90 mb-4">
+          <div className="flex items-center gap-3 text-sm text-primary-text-contrast/90 mb-4">
             {blog.date && (
               <time className="font-medium">
                 {formatDate(blog.date)}
@@ -40,13 +40,13 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 group-hover:text-emerald-300 transition-colors">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 group-hover:text-tertiary-text-contrast transition-colors">
             {blog.title}
           </h2>
 
           {/* Description */}
           {blog.descriptionPreview && (
-            <p className="text-base md:text-lg text-white/90 mb-6 line-clamp-2">
+            <p className="text-base md:text-lg text-primary-text-contrast/90 mb-6 line-clamp-2">
               {blog.descriptionPreview}
             </p>
           )}
@@ -57,7 +57,7 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
               {displayTags.map((tag, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/30"
+                  className="px-4 py-2 bg-primary-background/20 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-primary-background/30"
                 >
                   {tag}
                 </span>
@@ -72,7 +72,7 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
   return (
     <Link
       to={`/blog/${blog.slug}`}
-      className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 h-full pb-8"
+      className="group block bg-primary-background rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 h-full pb-8"
     >
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
@@ -87,7 +87,7 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
       {/* Content */}
       <div className="p-6 flex flex-col h-fit">
         {/* Date and Reading Time */}
-        <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+        <div className="flex items-center gap-3 text-sm text-secondary-text mb-3">
           {blog.date && (
             <time className="font-medium">
               {formatDate(blog.date)}
@@ -102,13 +102,13 @@ export const BlogCard = ({ blog, formatDate, variant = "grid" }) => {
         </div>
 
         {/* Title */}
-        <h2 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-emerald-500 transition-colors">
+        <h2 className="text-xl font-bold mb-3 text-primary-text group-hover:text-tertiary-text transition-colors">
           {blog.title}
         </h2>
 
         {/* Description */}
         {blog.descriptionPreview && (
-          <p className="text-sm text-gray-600 mb-4 flex-grow">
+          <p className="text-sm text-secondary-text mb-4 flex-grow">
             {blog.descriptionPreview.length > maxDescriptionLength ? blog.descriptionPreview.slice(0, maxDescriptionLength) + " ..." : blog.descriptionPreview}
           </p>
         )}

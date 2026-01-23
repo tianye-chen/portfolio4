@@ -115,13 +115,13 @@ export const Nav = () => {
       {/* Hamburger/Close Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-300 hover:scale-110"
+        className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary-background shadow-lg transition-all duration-300 hover:scale-110"
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
         {isOpen ? (
-          <HiX className="h-6 w-6 text-gray-800" />
+          <HiX className="h-6 w-6 text-primary-text" />
         ) : (
-          <HiMenu className="h-6 w-6 text-gray-800" />
+          <HiMenu className="h-6 w-6 text-primary-text" />
         )}
       </button>
 
@@ -153,14 +153,14 @@ export const Nav = () => {
                 <Link
                   to={item.path}
                   onClick={(e) => handleItemClick(item, e)}
-                  className="block rounded-full bg-white px-4 py-2 font-medium whitespace-nowrap text-gray-800 shadow-lg transition-colors duration-200 hover:bg-gray-100"
+                  className="block rounded-full bg-primary-background px-4 py-2 font-medium whitespace-nowrap text-primary-text shadow-lg transition-colors duration-200 hover:bg-primary-background-hover cursor-pointer"
                 >
                   {item.name}
                 </Link>
               ) : (
                 <button
                   onClick={(e) => handleItemClick(item, e)}
-                  className="block w-full rounded-full bg-gray-200 px-4 py-2 text-left font-medium whitespace-nowrap text-gray-800 shadow-lg transition-colors duration-200 hover:bg-gray-300"
+                  className="block rounded-full bg-primary-background px-4 py-2 font-medium whitespace-nowrap text-primary-text shadow-lg transition-colors duration-200 hover:bg-primary-background-hover cursor-pointer"
                 >
                   {item.name}
                 </button>

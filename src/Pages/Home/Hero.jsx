@@ -251,9 +251,9 @@ export const Hero = () => {
   };
 
   return (
-    <div>
+    <div className="text-primary-text">
       {/** Dotted background pattern */}
-      <div className="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(#e5e7eb_4px,transparent_0px)] [background-size:64px_64px]"></div>
+      <div className="absolute -z-10 min-h-screen min-w-screen bg-[radial-gradient(var(--color-dotted-background)_4px,var(--color-primary-background)_0px)] [background-size:64px_64px]"></div>
 
       <div className="relative flex min-h-screen flex-row items-center justify-center gap-8 overflow-hidden pb-24 text-center md:text-left">
         <div
@@ -271,7 +271,7 @@ export const Hero = () => {
 
         <div className="">
           <h1
-            className="flex items-center justify-center text-3xl font-extrabold text-emerald-500 font-stretch-150% md:justify-start"
+            className="flex items-center justify-center text-3xl font-extrabold text-primary font-stretch-150% md:justify-start"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             {" "}
@@ -281,14 +281,14 @@ export const Hero = () => {
           <h1
             className={`font-roboto mb-4 bg-clip-text text-5xl leading-normal font-extrabold text-transparent md:text-6xl`}
             style={{
-              backgroundImage: `linear-gradient(90deg, #4DE3B6 0%, #00BC7D 10%, #009999 100%)`,
+              backgroundImage: `linear-gradient(90deg, var(--color-gradient-green-1) 0%, var(--color-gradient-green-2) 10%, var(--color-gradient-green-3) 100%)`,
             }}
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             Daniel Chen
           </h1>
           <p
-            className="mb-4 text-xl font-bold text-emerald-500"
+            className="mb-4 text-xl font-bold text-primary"
             ref={(el) => refPush(el, nameCenterSectionRef)}
           >
             Master's Graduate in Computer Science
@@ -300,7 +300,7 @@ export const Hero = () => {
           >
             Creating Solutions with{" "}
             <span
-              className="border-r-2 border-emerald-500 pr-1"
+              className="border-r-2 border-primary pr-1"
               ref={(el) => {
                 if (el) {
                   typewriterRef.current[0] = el;
@@ -317,7 +317,7 @@ export const Hero = () => {
           >
             <p> Creating Solutions with </p>
             <span
-              className="border-r-2 border-emerald-500 pr-1"
+              className="border-r-2 border-primary pr-1"
               ref={(el) => {
                 if (el) {
                   typewriterRef.current[1] = el;
@@ -327,12 +327,12 @@ export const Hero = () => {
           </div>
         </div>
         <div
-          className="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-emerald-500"
+          className="absolute bottom-1/5 flex min-w-screen flex-col items-center justify-center gap-6 px-6 text-primary"
           ref={(el) => refPush(el, socialsRef)}
         >
           <h1 className="font-lexend text-2xl">
             Let's{" "}
-            <span className="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-emerald-500">
+            <span className="relative before:absolute before:-inset-1 before:skew-y-4 before:bg-primary">
               <span className="relative mr-1 text-white">Connect</span>
             </span>
           </h1>
@@ -362,7 +362,7 @@ export const Hero = () => {
         </div>
 
         <IoIosArrowDown
-          className="absolute bottom-10 flex justify-center text-4xl text-emerald-500"
+          className="absolute bottom-10 flex justify-center text-4xl text-primary"
           ref={downArrowRef}
         />
       </div>

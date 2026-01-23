@@ -3,7 +3,7 @@ export const Footer = () => {
     <div>
         {/** Footer */}
         <footer className="py-8 border-t-1 border-gray-300">
-            <div className="mx-auto max-w-7xl px-4 text-center text-gray-500">
+            <div className="mx-auto max-w-7xl px-4 text-center text-secondary-text">
                 <p>
                     &copy; {new Date().getFullYear()} Daniel Chen. Built with love 💚, passion, and React.
                     <br />
