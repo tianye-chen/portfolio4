@@ -12,16 +12,21 @@ export const BlogList = () => {
   const [sortOrder, setSortOrder] = useState("newest"); // "newest" or "oldest"
   const [currentPage, setCurrentPage] = useState(1);
   const [filterDropdownActive, setFilterDropdownActive] = useState(false);
+  const [sortDropdownActive, setSortDropdownActive] = useState(false);
   const [filterOptions, setFilterOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [tags, setTags] = useState([]);
   const blogsPerPage = 12;
   const filterRef = useRef(null);
+  const sortRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filterRef.current && !filterRef.current.contains(event.target)) {
         setFilterDropdownActive(false);
+      }
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setSortDropdownActive(false);
       }
     };
 
@@ -157,15 +162,45 @@ export const BlogList = () => {
               <label className="text-sm font-medium text-gray-700">
                 Sort by:
               </label>
-              <select
-                value={sortOrder}
-                onChange={(e) => handleSortChange(e.target.value)}
-                className="bg-primary-background focus:ring-border-active cursor-pointer rounded-lg border px-4 py-2 text-gray-700 transition-all focus:border-transparent focus:ring-2 focus:outline-none"
-              >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-              </select>
+              <div className="relative flex gap-2" ref={sortRef}>
+                <div
+                  onClick={() => setSortDropdownActive(!sortDropdownActive)}
+                  className={`bg-primary-background flex w-44 cursor-pointer items-center justify-between gap-2 rounded-lg border py-2 pl-4 text-gray-700 ring-2 transition-all select-none hover:ring-border-active hover:border-transparent ${sortDropdownActive ? "ring-border-active border-transparent" : "ring-transparent"}`}
+                >
+                  <span>
+                    {sortOrder === "newest" ? "Newest First" : "Oldest First"}
+                  </span>
+                  <IoIosArrowDown
+                    className={`${sortDropdownActive ? "rotate-180" : "rotate-0"} mr-2 transition-all`}
+                  />
+                </div>
+
+                {/* Dropdown Menu */}
+                <ul
+                  className={`bg-primary-background border-border-active absolute top-full left-0 z-10 mt-2 max-h-64 w-full overflow-y-auto rounded-lg border px-1 py-2 ${sortDropdownActive ? "scale-100 opacity-100" : "pointer-events-none scale-75 opacity-0"} origin-top-left transition-all`}
+                >
+                  <li
+                    onClick={() => {
+                      handleSortChange("newest");
+                      setSortDropdownActive(false);
+                    }}
+                    className="hover:bg-primary-background-hover mb-2 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1 transition-colors"
+                  >
+                    <span className="select-none">Newest First</span>
+                  </li>
+                  <li
+                    onClick={() => {
+                      handleSortChange("oldest");
+                      setSortDropdownActive(false);
+                    }}
+                    className="hover:bg-primary-background-hover mb-2 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1 transition-colors"
+                  >
+                    <span className="select-none">Oldest First</span>
+                  </li>
+                </ul>
+              </div>
             </div>
+            
             {/* Filter */}
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium text-gray-700">
@@ -174,23 +209,15 @@ export const BlogList = () => {
               <div className="relative flex gap-2" ref={filterRef}>
                 <div
                   onClick={() => setFilterDropdownActive(!filterDropdownActive)}
-                  className={`bg-primary-background flex cursor-pointer items-center gap-2 rounded-lg border py-2 pl-4 text-gray-700 ring-2 transition-all select-none ${filterDropdownActive ? "ring-border-active border-transparent" : "ring-transparent"}`}
+                  className={`bg-primary-background flex cursor-pointer items-center gap-2 rounded-lg border py-2 pl-4 text-gray-700 ring-2 transition-all select-none hover:ring-border-active hover:border-transparent ${filterDropdownActive ? "ring-border-active border-transparent" : "ring-transparent"}`}
                 >
                   <span>{filterOptions.length}</span> Criteria{" "}
                   <IoIosArrowDown
                     className={`${filterDropdownActive ? "rotate-180" : "rotate-0"} mr-2 transition-all`}
                   />
                 </div>
-                <button
-                  onClick={() => {
-                    setFilterOptions([]);
-                    setCurrentPage(1);
-                  }}
-                  className="bg-primary-background hover:bg-secondary-background rounded-lg border p-2 text-gray-700 transition-colors"
-                  title="Reset Filters"
-                >
-                  <RxReset />
-                </button>
+
+                {/* Dropdown Menu */}
                 <ul
                   className={`bg-primary-background border-border-active absolute top-full left-0 z-10 mt-2 max-h-64 w-full overflow-y-auto rounded-lg border px-1 py-2 ${filterDropdownActive ? "scale-100 opacity-100" : "pointer-events-none scale-75 opacity-0"} origin-top-left transition-all`}
                 >
@@ -218,6 +245,18 @@ export const BlogList = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* Reset Filters Button */}
+                <button
+                  onClick={() => {
+                    setFilterOptions([]);
+                    setCurrentPage(1);
+                  }}
+                  className="bg-primary-background hover:ring-border-active hover:border-transparent hover:ring-2 active:bg-secondary-background rounded-lg border p-2 text-gray-700 transition-all"
+                  title="Reset Filters"
+                >
+                  <RxReset />
+                </button>
               </div>
             </div>
           </div>
