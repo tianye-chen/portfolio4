@@ -1,44 +1,72 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const cors = require('cors');
+const express = require("express");
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT
-const MONGODB_URI = process.env.MONGODB_URI
+const PORT = process.env.PORT;
+const SECRET = process.env.SECRET;
+const MONGODB_URI = process.env.MONGODB_URI;
+
+app.use(cors());
+app.use(express.json());
 
 const client = new MongoClient(MONGODB_URI, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
 });
 
-app.get('/', async (req, res) => {
+app.post("/api/blog/post", async (req, res) => {
+  const { title, description, image, tags, content, secret } = req.body;
 
+  if (secret !== SECRET) {
+    return res.status(403).json({ error: "Unauthorized" });
+  }
+
+  try {
+    await client.connect();
+    const database = client.db("blogs");
+    const posts = database.collection("posts");
+    const newPost = {
+      title: title,
+      description: description,
+      image: image,
+      tags: tags,
+      content: content,
+      createdAt: new Date(),
+    };
+    const result = await posts.insertOne(newPost);
+    console.log(result);
+    res.status(201).json({ message: "Blog post created", postId: result.insertedId });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Internal Server Error" });
+  } finally {
+    await client.close();
+  }
+});
+
+app.get("/api/blog/get", async (req, res) => {
+  console.log(`Requested blog posts.`);
+  try {
+    await client.connect();
+    const database = client.db("blogs");
+    const posts = database.collection("posts");
+    const allPosts = await posts.find({}).toArray();
+    res.status(200).json(allPosts);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-})
-
-console.log("MONGODB_URI:", MONGODB_URI);
-
-const run = async () => {
-    try {
-        await client.connect();
-        const dbList = await client.db().admin().listDatabases();
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
-        console.log("Available databases:", dbList.databases.map(db => db.name));
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
-
-run().catch(console.dir);
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 module.exports = app;

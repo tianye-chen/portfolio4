@@ -21,32 +21,55 @@ const calculateReadingTime = (content) => {
 export const loadAllBlogs = async () => {
   const blogs = [];
 
-  for (const path in blogModules) {
-    const fileContent = blogModules[path];
+  const res = await fetch('/api/blog/get');
+  const data = await res.json();
 
-    // Parse frontmatter and content
-    const { attributes, body } = matter(fileContent);
-
-    // Extract slug from filename
-    const slug = path
-      .split('/')
-      .pop()
-      .replace(/\.md\?raw$/, '');
-
-    const content = body.trim();
+  for (const blog of data) {
+    const content = blog.content.trim()
     const readingTime = calculateReadingTime(content);
+    const slug = blog.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
     blogs.push({
       slug,
-      title: attributes.title || 'Untitled',
-      date: attributes.date || '',
-      tags: Array.isArray(attributes.tags) ? attributes.tags : [],
-      descriptionPreview: attributes.descriptionPreview || '',
-      image: attributes.image || await fetchRandomImg(attributes.title),
+      title: blog.title || 'Untitled',
+      date: blog.createdAt || '',
+      tags: Array.isArray(blog.tags) ? blog.tags : [],
+      descriptionPreview: blog.description || '',
+      image: blog.image || await fetchRandomImg(blog.title),
       content: content,
       readingTime: readingTime,
     });
+
   }
+
+  console.log(blogs);
+
+  //for (const path in blogModules) {
+  //  const fileContent = blogModules[path];
+//
+  //  // Parse frontmatter and content
+  //  const { attributes, body } = matter(fileContent);
+//
+  //  // Extract slug from filename
+  //  const slug = path
+  //    .split('/')
+  //    .pop()
+  //    .replace(/\.md\?raw$/, '');
+//
+  //  const content = body.trim();
+  //  const readingTime = calculateReadingTime(content);
+//
+  //  blogs.push({
+  //    slug,
+  //    title: attributes.title || 'Untitled',
+  //    date: attributes.date || '',
+  //    tags: Array.isArray(attributes.tags) ? attributes.tags : [],
+  //    descriptionPreview: attributes.descriptionPreview || '',
+  //    image: attributes.image || await fetchRandomImg(attributes.title),
+  //    content: content,
+  //    readingTime: readingTime,
+  //  });
+  //}
 
   // Sort by date (newest first) by default
   return blogs.sort((a, b) => {

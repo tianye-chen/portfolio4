@@ -16,6 +16,8 @@
 
     --color-tertiary-text: var(--color-emerald-600);
     --color-tertiary-text-contrast: var(--color-emerald-300);
+
+    --color-bad-text: var(--color-red-600);
     
     --color-primary-background: rgb(255, 255, 255);
     --color-primary-background-hover: var(--color-gray-100);
