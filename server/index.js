@@ -1,8 +1,8 @@
-require("dotenv").config();
-
-const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const cors = require("cors");
+import { TOTP } from "totp-generator";
+import { MongoClient, ServerApiVersion } from "mongodb";
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -23,7 +23,7 @@ const client = new MongoClient(MONGODB_URI, {
 app.post("/api/blog/post", async (req, res) => {
   const { title, description, image, tags, content, secret } = req.body;
 
-  if (secret !== SECRET) {
+  if (secret !== await generateTOTP()) {
     return res.status(403).json({ error: "Unauthorized" });
   }
 
@@ -69,4 +69,9 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-module.exports = app;
+export default app;
+
+const generateTOTP = async () => {
+  const { otp } = await TOTP.generate(SECRET, { digits: 6, period: 30})
+  return otp;
+}
