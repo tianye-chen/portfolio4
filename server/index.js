@@ -1,5 +1,6 @@
 import { TOTP } from "totp-generator";
 import { MongoClient, ServerApiVersion } from "mongodb";
+import serverless from "serverless-http";
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -69,9 +70,15 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-export default app;
-
 const generateTOTP = async () => {
   const { otp } = await TOTP.generate(SECRET, { digits: 6, period: 30})
   return otp;
 }
+
+if (process.env.NODE_ENV === "production") {
+  app.listen(3000, () => {
+    console.log(`Server is running on port 3000`);
+  })
+}
+
+module.exports.handler = serverless(app);
