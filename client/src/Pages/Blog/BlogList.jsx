@@ -61,17 +61,6 @@ export const BlogList = () => {
       }
     };
 
-    const fetchBlogDb = async () => {
-      try {
-        const res = await fetch("http://localhost:5050/");
-        const data = await res.json();
-        console.log("Blog DB Connection:", data);
-      } catch (error) {
-        console.error("Error connecting to Blog DB:", error);
-      }
-    }
-
-    fetchBlogDb();
     fetchBlogs();
   }, []);
 

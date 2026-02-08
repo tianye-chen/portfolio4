@@ -21,7 +21,7 @@ const calculateReadingTime = (content) => {
 export const loadAllBlogs = async () => {
   const blogs = [];
 
-  const res = await fetch('/api/blog/get');
+  const res = await fetch('/.netlify/functions/api/blog/get');
   const data = await res.json();
 
   for (const blog of data) {

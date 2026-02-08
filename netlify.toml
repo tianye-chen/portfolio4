@@ -1,0 +1,15 @@
+[build]
+    base = "client/"
+    publish = "dist/"
+    command = "npm run build"
+    functions = "../server/"
+
+[dev]
+    framework = "#custom"
+    command = "npm run dev --prefix client"
+    targetPort = 5173
+    port = 8888
+
+[functions]
+    directory = "../server/"
+    node_bundler = "esbuild"

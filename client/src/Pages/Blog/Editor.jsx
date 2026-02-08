@@ -40,7 +40,7 @@ export const Editor = () => {
       secret,
     };
 
-    fetch("/api/blog/post", {
+    fetch("/.netlify/functions/api/blog/post", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -48,6 +48,7 @@ export const Editor = () => {
       body: JSON.stringify(query)
     })
     .then(response => {
+      console.log(response)
       if (response.ok) {
         setShowSuccessPopup(true);
         setPostFailed(false);

@@ -6,12 +6,14 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
+const router = express.Router();
 const PORT = process.env.PORT;
 const SECRET = process.env.SECRET;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
+app.use('/.netlify/functions/api', router)
 
 const client = new MongoClient(MONGODB_URI, {
   serverApi: {
@@ -21,7 +23,7 @@ const client = new MongoClient(MONGODB_URI, {
   },
 });
 
-app.post("/api/blog/post", async (req, res) => {
+router.post("/blog/post", async (req, res) => {
   const { title, description, image, tags, content, secret } = req.body;
 
   if (secret !== await generateTOTP()) {
@@ -51,7 +53,7 @@ app.post("/api/blog/post", async (req, res) => {
   }
 });
 
-app.get("/api/blog/get", async (req, res) => {
+router.get("/blog/get", async (req, res) => {
   console.log(`Requested blog posts.`);
   try {
     await client.connect();
