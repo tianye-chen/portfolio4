@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BlogPage } from "./BlogPage";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
@@ -13,6 +13,17 @@ export const Editor = () => {
   const [content, setContent] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [postFailed, setPostFailed] = useState(false);
+  const [clearConfirmation, setClearConfirmation] = useState(0);
+
+  // Reset clear confirmation after 5 seconds
+  useEffect(() => {
+    if (clearConfirmation > 0) {
+      const timer = setTimeout(() => {
+        setClearConfirmation(0);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [clearConfirmation]);
 
   const wordCount = content.trim().split(/\s+/).filter(Boolean).length;
   const charCount = content.length;
@@ -57,6 +68,21 @@ export const Editor = () => {
       }
     })
   };
+
+  const handleClear = () => {
+    if (clearConfirmation < 3){
+      setClearConfirmation(clearConfirmation + 1);
+      return;
+    }
+
+    setTitle("");
+    setDescription("");
+    setTags([]);
+    setContent("");
+    setSecret("");
+    setPostFailed(false);
+    setClearConfirmation(0);
+  }
 
   return (
     <div className="bg-secondary-background flex h-screen w-full overflow-hidden">
@@ -152,24 +178,36 @@ export const Editor = () => {
           />
         </div>
 
-        {/* Post Button */}
-        <div className="mt-2 flex items-center">
-          <button
-            onClick={handlePost}
-            disabled={!secret}
-            className="bg-tertiary-text disabled:bg-secondary-text text-primary-background inline-flex justify-center rounded-lg border border-transparent px-6 py-3 text-sm font-bold shadow-sm hover:cursor-pointer hover:opacity-90 focus:ring-2 focus:ring-offset-2 focus:outline-none"
-          >
-            Post
-          </button>
-          <input
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            className="border-border-active bg-primary-background text-primary-text placeholder:text-secondary-text focus:border-tertiary-text focus:ring-tertiary-text rounded-lg border px-4 py-2 ml-4 shadow-sm focus:ring-1 focus:outline-none"
-          />
-          {postFailed && <div className="text-bad-text ml-4 text-sm"> 
-            Post failed 
-          </div>}
+        <div className="flex flex-row items-center justify-between">
+          {/* Post Button */}
+          <div className="mt-2 flex items-center">
+            <button
+              onClick={handlePost}
+              disabled={!secret}
+              className="bg-tertiary-text disabled:bg-secondary-text text-primary-background inline-flex justify-center rounded-lg border border-transparent px-6 py-3 text-sm font-bold shadow-sm hover:cursor-pointer hover:opacity-90 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+            >
+              Post
+            </button>
+            <input
+              type="text"
+              value={secret}
+              onChange={(e) => setSecret(e.target.value)}
+              className="border-border-active bg-primary-background text-primary-text placeholder:text-secondary-text focus:border-tertiary-text focus:ring-tertiary-text rounded-lg border px-4 py-2 ml-4 shadow-sm focus:ring-1 focus:outline-none"
+            />
+            {postFailed && <div className="text-bad-text ml-4 text-sm"> 
+              Post failed 
+            </div>}
+          </div>
+
+                    {/* Clear button*/}
+          <div className="mt-2">
+            <button
+              onClick={handleClear}
+              className="text-primary-text-contrast inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-colors bg-bad rounded-lg hover:opacity-90 cursor-pointer"
+            >
+              {clearConfirmation < 3 ? `Clear (${3 - clearConfirmation})` : "Clear"}
+            </button>
+          </div>
         </div>
       </div>
 
