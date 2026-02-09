@@ -241,7 +241,7 @@ export const projects = [
     year: "2025",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/portfolio4",
-    demo: "https://daniech.net/",
+    demo: "https://danielch.net/",
     tech: [
       "JavaScript",
       "React",
