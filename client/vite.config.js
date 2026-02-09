@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/blog': {
-        target: 'http://localhost:5050',
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       }
