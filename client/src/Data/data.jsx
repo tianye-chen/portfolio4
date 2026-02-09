@@ -175,7 +175,7 @@ export const projects = [
     year: "2026",
     attributes: ["Solo"],
     repo: "https://github.com/tianye-chen/portfolio4/tree/main/client/src/Pages/Blog",
-    demo: "https://danielch.net/portfolio4/blog",
+    demo: "https://danielch.net/blog",
     tech: [
       "JavaScript",
       "React",
