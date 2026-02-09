@@ -170,6 +170,22 @@ export const experience = [
 
 export const projects = [
   {
+    title: "Personal Blog",
+    description: "A personal blog built with React and TailwindCSS, featuring live markdown editor and dynamic content loading.",
+    year: "2026",
+    attributes: ["Solo"],
+    repo: "https://github.com/tianye-chen/portfolio4/tree/main/client/src/Pages/Blog",
+    tech: [
+      "JavaScript",
+      "React",
+      "TailwindCSS",
+      "Vite",
+      "MongoDB",
+      "Serverless Functions",
+      "Full-Stack Web Development",
+    ]
+  },
+  {
     title: "🧰 Web AI Tool Suite",
     description: "A suite of freemium web AI tools targeted towards educators. Including video summarization, text summarization, and worksheet generation.",
     year: "2026 In Progress",
